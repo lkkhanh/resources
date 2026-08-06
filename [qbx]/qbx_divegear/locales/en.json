@@ -1,0 +1,16 @@
+{
+    "error": {
+        "not_standing_up": "Bạn cần đứng trên mặt đất để mặc đồ...",
+        "need_otube": "Bạn cần nạp lại bình khí! Lấy bình khí thay thế!",
+        "underwater": "Bạn không thể làm điều này dưới nước..."
+    },
+    "success": {
+        "took_out": "Bạn đã cởi đồ bơi ra!",
+        "tube_filled": "Bạn đã nạp đầy bình khí!"
+    },
+    "info": {
+        "put_suit": "Đang mặc đồ bơi...",
+        "pullout_suit": "Đang cởi đồ bơi...",
+        "filling_air": "Đang nạp bình khí..."
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "error": {
+    "no_people_nearby": "Không có người chơi ở gần.",
+    "no_vehicle_nearby": "Không có phương tiện ở gần để lật.",
+    "no_vehicle_found": "Không tìm thấy phương tiện.",
+    "extra_deactivated": "Đã tắt Extra %s.",
+    "extra_not_present": "Extra %s không có trên xe này.",
+    "not_driver": "Bạn không phải tài xế của xe.",
+    "vehicle_driving_fast": "Phương tiện đang chạy quá nhanh.",
+    "seat_occupied": "Ghế này đã có người ngồi.",
+    "race_harness_on": "Bạn đang đeo dây an toàn đua. Không thể chuyển ghế.",
+    "obj_not_found": "Không thể tạo vật thể yêu cầu.",
+    "not_near_ambulance": "Bạn không ở gần xe cứu thương.",
+    "far_away": "Bạn ở quá xa.",
+    "not_kidnapped": "Bạn chưa bắt giữ người này.",
+    "trunk_closed": "Cốp xe đang đóng.",
+    "cant_enter_trunk": "Bạn không thể chui vào cốp xe này.",
+    "already_in_trunk": "Bạn đã ở trong cốp xe rồi.",
+    "someone_in_trunk": "Đã có người ở trong cốp xe.",
+    "cancel_task": "Đã hủy"
+  },
+  "progress": {
+    "flipping_car": "Đang lật xe..."
+  },
+  "success": {
+    "extra_activated": "Đã bật Extra %s.",
+    "entered_trunk": "Bạn đã vào trong cốp xe.",
+    "flipped_car": "Đã lật phương tiện thành công!"
+  },
+  "info": {
+    "no_variants": "Không có biến thể cho vật phẩm/trang phục này.",
+    "wrong_ped": "Model nhân vật này không cho phép tùy chọn này.",
+    "nothing_to_remove": "Bạn không có gì để cởi/gỡ ra.",
+    "already_wearing": "Bạn đã đang mặc/đeo nó rồi.",
+    "switched_seats": "Bạn hiện đang ở ghế %s."
+  },
+  "general": {
+    "command_description": "Mở Radial Menu (Menu bánh xe)",
+    "get_out_trunk_button": "[E] Thoát khỏi cốp xe",
+    "close_trunk_button": "[G] Đóng cốp xe",
+    "open_trunk_button": "[G] Mở cốp xe",
+    "getintrunk_command_desc": "Chui vào cốp xe",
+    "putintrunk_command_desc": "Đặt người chơi vào cốp xe",
+    "gang_radial": "Băng đảng",
+    "job_radial": "Nghề nghiệp"
+  },
+  "options": {
+    "flip": "Lật phương tiện",
+    "vehicle": "Phương tiện",
+    "emergency_button": "Nút khẩn cấp",
+    "driver_seat": "Ghế lái",
+    "passenger_seat": "Ghế phụ",
+    "other_seats": "Ghế khác",
+    "rear_left_seat": "Ghế sau bên trái",
+    "rear_right_seat": "Ghế sau bên phải"
+  }
+}

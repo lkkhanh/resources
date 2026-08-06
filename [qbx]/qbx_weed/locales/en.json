@@ -1,0 +1,23 @@
+{
+    "error": {
+        "process_canceled": "Đã hủy quá trình",
+        "plant_has_died": "Cây cần sa đã héo chết. Nhấn ~r~E~w~ để dọn dẹp.",
+        "cant_place_here": "Không thể trồng ở đây",
+        "not_safe_here": "Nơi này không an toàn, hãy thử trồng trong nhà của bạn",
+        "not_need_nutrition": "Cây trồng hiện không cần bổ sung chất dinh dưỡng",
+        "this_plant_no_longer_exists": "Cây này không còn tồn tại?",
+        "house_not_found": "Không tìm thấy nhà",
+        "you_dont_have_enough_resealable_bags": "Bạn không có đủ Túi zip đựng cần sa"
+    },
+    "text": {
+        "sort": "Giống cây:",
+        "harvest_plant": "Nhấn ~g~E~w~ để thu hoạch cây.",
+        "nutrition": "Dinh dưỡng:",
+        "health": "Sức khỏe:",
+        "harvesting_plant": "Đang thu hoạch cây",
+        "planting": "Đang trồng cây",
+        "feeding_plant": "Đang tưới phân/dinh dưỡng",
+        "the_plant_has_been_harvested": "Cây đã được thu hoạch xong",
+        "removing_the_plant": "Đang dọn dẹp cây"
+    }
+}

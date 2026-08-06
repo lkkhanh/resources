@@ -1,0 +1,14 @@
+{
+    "progress": {
+        "attachHarness": "Thắt dây an toàn",
+        "removeHarness": "Tháo dây an toàn"
+    },
+    "notify": {
+        "notInCar": "Bạn không có ở trong xe"
+    },
+    "error": {
+        "seatbelton": "Thắt dây an toàn trước",
+        "harnesson": "Tháo dây an toàn trước"
+    },
+    "toggleCommand": "Thắt/Tháo dây an toàn"
+}

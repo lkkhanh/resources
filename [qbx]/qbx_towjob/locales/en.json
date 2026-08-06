@@ -1,0 +1,40 @@
+{
+    "error": {
+        "finish_work": "Hoàn thành công việc của bạn trước",
+        "vehicle_not_correct": "Đây không phải là xe phù hợp",
+        "failed": "Bạn đã thất bại",
+        "not_towing_vehicle": "Bạn phải ở trong xe kéo của mình",
+        "too_far_away": "Bạn quá xa",
+        "no_work_done": "Bạn chưa làm việc gì",
+        "no_deposit": "Cần $%%s tiền đặt cọc"
+    },
+    "success": {
+        "paid_with_cash": "$%%s đã được thanh toán bằng tiền mặt",
+        "paid_with_bank": "$%%s đã được thanh toán từ ngân hàng",
+        "refund_to_cash": "$%%s đã được thanh toán bằng tiền mặt",
+        "you_earned": "Bạn đã kiếm được $%s"
+    },
+    "menu": {
+        "header": "Xe cứu hộ",
+        "close_menu": "⬅ Đóng Menu"
+    },
+    "mission": {
+        "delivered_vehicle": "Bạn đã giao xe",
+        "get_new_vehicle": "Một chiếc xe mới có thể được lấy",
+        "towing_vehicle": "Đang kéo xe...",
+        "goto_depot": "Đưa xe đến kho Hayes",
+        "vehicle_towed": "Xe đã được kéo",
+        "untowing_vehicle": "Tháo xe",
+        "vehicle_takenoff": "Xe đã được tháo"
+    },
+    "info": {
+        "tow": "Cho xe lên sàn phía sau xe kéo",
+        "toggle_npc": "Bật/Tắt công việc Npc",
+        "skick": "Phát hiện hành vi cố gắng khai thác lỗi"
+    },
+    "label": {
+        "payslip": "Lương",
+        "vehicle": "Xe",
+        "npcz": "Khu vực Npc"
+    }
+}

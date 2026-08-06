@@ -1,0 +1,17 @@
+{
+    "text": {
+        "electrical": "[E] - Hack ổ khóa điện",
+        "electricalTarget": "Hack ổ khóa điện",
+        "cabinet": "[E] - Đập tủ kính",
+        "cabinetTarget": "Đập tủ kính"
+    },
+    "notify": {
+        "busy": "Đã có người đang thao tác",
+        "cabinetdone": "Tủ kính này đã bị đập vỡ rồi",
+        "noweapon": "Bạn không cầm vũ khí trên tay",
+        "noitem": "Bạn không mang theo %s",
+        "police": "Phát hiện vụ cướp cửa hàng trang sức Vangelico",
+        "nopolice": "Không đủ Cảnh sát on-duty (Yêu cầu %s cảnh sát)",
+        "reward_dropped": "Bạn đã làm rơi một số trang sức"
+    }
+}

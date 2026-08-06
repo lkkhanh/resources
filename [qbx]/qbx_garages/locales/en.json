@@ -1,0 +1,32 @@
+{
+    "error": {
+        "no_space": "Vị trí đã bị phương tiện khác chiếm chỗ.",
+        "no_access": "Bạn không có quyền truy cập gara này",
+        "no_vehicles": "Bạn hiện không có phương tiện nào tại vị trí này...",
+        "not_impound": "Phương tiện của bạn không có trong bãi tạm giữ",
+        "not_owned": "Phương tiện này không thể cất vào gara",
+        "not_correct_type": "Bạn không thể cất loại phương tiện này ở đây",
+        "not_enough": "Không đủ tiền",
+        "vehicle_occupied": "Không thể cất phương tiện vì vẫn có người ngồi bên trong",
+        "in_vehicle": "Bạn đang ở trên một phương tiện...",
+        "spawn_failed": "Đã xảy ra lỗi khi tạo phương tiện",
+        "spawn_in_progress": "Vui lòng chờ phương tiện của bạn được giao tới..."
+    },
+    "success": {
+        "vehicle_parked": "Đã cất phương tiện vào gara"
+    },
+    "menu": {
+        "information": "Thông tin",
+        "description": "Tên: %s\nBiển số: %s\nPhí tạm giữ: $%s",
+        "body": "Thân vỏ",
+        "engine": "Động cơ",
+        "fuel": "Nhiên liệu",
+        "take_out": "Lấy xe ra",
+        "veh_impounded": "Phương tiện của bạn đã bị Cảnh sát tịch thu/giam giữ"
+    },
+    "info": {
+        "car_e": "E - Mở Gara",
+        "park_e": "E - Cất phương tiện",
+        "impound_e": "E - Mở Bãi tạm giữ"
+    }
+}

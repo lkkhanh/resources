@@ -1,0 +1,31 @@
+{
+    "success": {
+        "success_message": "Thành công",
+        "fuses_are_blown": "Cầu chì đã bị nổ",
+        "door_has_opened": "Cửa đã được mở"
+    },
+    "error": {
+        "cancel_message": "Đã hủy",
+        "safe_too_strong": "Có vẻ như khóa két sắt quá chắc chắn...",
+        "missing_item": "Bạn thiếu vật phẩm cần thiết...",
+        "bank_already_open": "Két/Ngân hàng này đã được mở rồi...",
+        "minimum_police_required": "Yêu cầu tối thiểu %s cảnh sát on-duty",
+        "security_lock_active": "Khóa an ninh đang kích hoạt, hiện không thể mở cửa",
+        "wrong_type": "%s không nhận đúng loại dữ liệu cho tham số '%s'\nloại nhận được: %s\ngiá trị nhận được: %s\n loại kỳ vọng: %s",
+        "fuses_already_blown": "Cầu chì đã bị nổ từ trước...",
+        "event_trigger_wrong": "%s%s đã được kích hoạt khi chưa đủ điều kiện, nguồn: %s",
+        "missing_ignition_source": "Bạn thiếu công cụ đánh lửa / mồi lửa"
+    },
+    "general": {
+        "breaking_open_safe": "Đang cạy phá két sắt...",
+        "connecting_hacking_device": "Đang kết nối thiết bị hack...",
+        "fleeca_robbery_alert": "Phát hiện cướp ngân hàng Fleeca",
+        "paleto_robbery_alert": "Phát hiện cướp ngân hàng Blaine County Savings",
+        "pacific_robbery_alert": "Phát hiện cướp ngân hàng trung tâm Pacific Standard",
+        "break_safe_open_option_target": "Cạy phá két sắt",
+        "break_safe_open_option_drawtext": "[E] Cạy phá két sắt",
+        "validating_bankcard": "Đang xác thực thẻ ngân hàng...",
+        "thermite_detonating_in_seconds": "Nhiệt nhôm (Thermite) sẽ phát nổ trong %s giây",
+        "bank_robbery_police_call": "10-90: Cướp ngân hàng"
+    }
+}

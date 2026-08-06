@@ -1,0 +1,21 @@
+{
+    "error": {
+        "not_enough_money": "Bạn không có đủ tiền...",
+        "invalid_type": "Loại giấy tờ/thẻ không hợp lệ...",
+        "invalid_job": "Nghề nghiệp không hợp lệ..."
+    },
+    "success": {
+        "item_recieved": "Bạn đã nhận được ",
+        "new_job": "Chúc mừng bạn đã nhận công việc mới!"
+    },
+    "info": {
+        "cityhall": "Tòa thị chính",
+        "open_cityhall": "[E] Mở Tòa thị chính",
+        "target_open_cityhall": "Mở Tòa thị chính",
+        "identity": "Giấy tờ cá nhân",
+        "employment": "Đăng ký việc làm",
+        "obtain_license_identity": "Xin cấp các loại giấy phép",
+        "select_job": "Chọn công việc mới",
+        "price": "Giá: $%s"
+    }
+}

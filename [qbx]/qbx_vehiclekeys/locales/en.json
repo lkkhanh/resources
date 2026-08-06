@@ -1,0 +1,56 @@
+{
+  "addcom": {
+    "addkeys": "addkeys",
+    "addkeys_help": "Thêm chìa khóa xe cho ai đó (Admin).",
+    "addkeys_id": "id",
+    "addkeys_id_help": "ID Người chơi",
+    "addkeys_plate": "plate",
+    "addkeys_plate_help": "Biển số xe",
+    "givekeys": "givekeys",
+    "givekeys_help": "Đưa chìa khóa xe cho ai đó. Nếu không nhập ID sẽ đưa cho người gần nhất hoặc trong xe.",
+    "givekeys_id": "id",
+    "givekeys_id_help": "ID Người chơi",
+    "givekeys_plate": "plate",
+    "givekeys_plate_help": "Biển số xe",
+    "removekeys": "removekeys",
+    "removekeys_help": "Thu hồi chìa khóa xe của ai đó (Admin).",
+    "removekeys_id": "id",
+    "removekeys_id_help": "ID Người chơi",
+    "removekeys_plate": "plate",
+    "removekeys_plate_help": "Biển số xe"
+  },
+  "info": {
+    "engine": "Bật/Tắt Động cơ",
+    "search_keys_dispatch": "[H] - Tìm Chìa khóa xe",
+    "search_keys": "Tìm chìa khóa xe trong ổ",
+    "toggle_locks": "Khóa/Mở cửa xe",
+    "vehicle_theft": "Đang xảy ra vụ trộm xe. Loại xe: "
+  },
+  "notify": {
+    "carjack_failed": "Cướp xe thất bại!",
+    "failed_lockedpick": "Bạn bẻ khóa cửa xe thất bại.",
+    "failed_keys": "Bạn không tìm thấy chìa khóa và cảm thấy chán nản.",
+    "fpid": "Vui lòng nhập ID người chơi và Biển số xe",
+    "gave_keys": "Bạn đã giao chìa khóa xe.",
+    "added_keys": "Bạn đã đưa bản sao chìa khóa xe %s cho người chơi %s!",
+    "keys_taken": "Bạn đã lấy được chìa khóa xe!",
+    "keys_removed": "Bạn đã mất chìa khóa xe!",
+    "no_keys": "Bạn không có chìa khóa của phương tiện này.",
+    "not_near": "Không có ai ở gần để giao chìa khóa",
+    "vehicle_not_near": "Không ở đủ gần phương tiện",
+    "vehicle_locked": "Đã khóa xe!",
+    "vehicle_lockedpick": "Bạn đã cạy bẻ khóa cửa xe thành công!",
+    "vehicle_unlocked": "Đã mở khóa xe!",
+    "removed_keys": "Đã xóa chìa khóa biển số %s của người chơi %s!",
+    "removed_keys_player": "Chìa khóa xe biển số %s của bạn đã bị xóa!",
+    "player_offline": "Người chơi này không online!",
+    "vehicle_is_unlocked": "Xe hiện đã được mở khóa rồi!",
+    "not_optin": "Bạn chưa bật chế độ làm nhiệm vụ Admin. (/optin để bật)",
+    "require_on_duty": "Phương tiện này giới hạn chỉ dành cho nhân sự đang trong ca làm việc."
+  },
+  "progress": {
+    "attempting_carjack": "Đang cố gắng cướp xe...",
+    "searching_keys": "Đang tìm chìa khóa xe...",
+    "takekeys": "Đang lấy chìa khóa từ người..."
+  }
+}

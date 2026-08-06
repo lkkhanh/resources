@@ -1,0 +1,54 @@
+{
+    "error": {
+        "cancel": "Đã huỷ",
+        "no_truck": "Xe của bạn đã bị hỏng rồi!",
+        "not_enough": "Không đủ tiền (Cần $%s)",
+        "too_far": "Điểm tập kết quá xa!",
+        "early_finish": "Do kết thúc sớm (Hoàn thành: %s Tổng: %s), tiền đặt cọc của bạn sẽ không được hoàn lại.",
+        "never_clocked_on": "Bạn chưa đi làm!",
+        "all_occupied": "Đã hết chỗ đỗ xe"
+    },
+    "success": {
+        "clear_routes": "Đã huỷ tuyến đường (Có %s tuyến đường đã lưu)",
+        "pay_slip": "Bạn đã nhận được $%s, lương %s đã được chuyển vào tài khoản ngân hàng của bạn!"
+    },
+    "target": {
+        "talk": "Nói chuyện với người thu gom rác",
+        "grab_garbage": "Nhặt túi rác",
+        "dispose_garbage": "Vứt túi rác"
+    },
+    "menu": {
+        "header": "Menu thu gom rác",
+        "collect": "Nhận lương",
+        "return_collect": "Trả xe và nhận lương tại đây!",
+        "route": "Yêu cầu tuyến đường",
+        "request_route": "Yêu cầu tuyến đường thu gom rác"
+    },
+    "info": {
+        "payslip_collect": "[E] - Nhận lương",
+        "payslip": "Phiếu lương",
+        "not_enough": "Bạn không có đủ tiền để đặt cọc.. Tiền đặt cọc là $%s",
+        "deposit_paid": "Bạn đã thanh toán tiền đặt cọc $%s!",
+        "no_deposit": "Bạn chưa thanh toán tiền đặt cọc cho chiếc xe này..",
+        "truck_returned": "Xe đã được trả lại, nhận phiếu lương của bạn để nhận tiền lương và tiền đặt cọc!",
+        "bags_left": "Còn lại %s túi rác!",
+        "bags_still": "Còn lại %s túi rác!",
+        "all_bags": "Tất cả túi rác đã được thu gom, tiến hành đến địa điểm tiếp theo!",
+        "depot_issue": "Đã có vấn đề tại kho, vui lòng quay lại ngay!",
+        "done_working": "Bạn đã hoàn thành công việc! Về kho.",
+        "started": "Bạn đã bắt đầu làm việc, vị trí được đánh dấu trên GPS!",
+        "grab_garbage": "[E] - Nhặt rác",
+        "stand_grab_garbage": "Đứng ở đây để nhặt rác.",
+        "dispose_garbage": "[E] - Vứt rác",
+        "progressbar": "Đang cho rác vào xe..",
+        "garbage_in_truck": "Cho rác vào xe..",
+        "stand_here": "Đứng ở đây..",
+        "found_crypto": "Bạn đã nhặt được một thanh Crypto trên đường!",
+        "payout_deposit": "(+ $%s tiền đặt cọc)",
+        "store_truck": "[E] - Cất xe rác",
+        "get_truck": "[E] - Lấy xe rác",
+        "picking_bag": "Đang nhặt rác..",
+        "talk": "[E] Nói chuyện với người thu gom rác",
+        "stops_left": "Còn lại %s điểm!"
+    }
+}

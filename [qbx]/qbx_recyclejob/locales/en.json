@@ -1,0 +1,25 @@
+{
+  "success": {
+    "you_have_been_clocked_in": "Bạn đã check in"
+  },
+  "text": {
+    "point_enter_warehouse": "[E] - Vào kho",
+    "enter_warehouse": "Vào kho",
+    "exit_warehouse": "Ra khỏi kho",
+    "point_exit_warehouse": "[E] - Ra khỏi kho",
+    "clock_out": "Rời ca làm",
+    "point_clock_out": "[E] - Rời ca làm",
+    "clock_in": "Nhận ca làm",
+    "point_clock_in": "[E] - Nhận ca làm",
+    "hand_in_package": "Giao hàng",
+    "point_hand_in_package": "[E] - Giao hàng",
+    "get_package": "Lấy hàng",
+    "point_get_package": "[E] - Lấy hàng",
+    "picking_up_the_package": "Đang nhặt rác",
+    "unpacking_the_package": "Đang xử lý rác"
+  },
+  "error": {
+    "you_have_clocked_out": "Bạn đã rời ca làm",
+    "overweight_check": "Bạn không thể mang thêm rác"
+  }
+}

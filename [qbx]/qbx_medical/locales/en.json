@@ -1,0 +1,53 @@
+{
+    "error": {
+        "bled_out": "Bạn đã chết do mất máu..."
+    },
+    "success": {
+        "wounds_healed": "Vết thương của bạn đã được chữa lành!"
+    },
+    "info": {
+        "self_death": "Bản thân hoặc NPC",
+        "wep_unknown": "Không xác định",
+        "status": "Kiểm tra tình trạng sức khỏe",
+        "healthy": "Bạn đã hoàn toàn khỏe mạnh trở lại!",
+        "pain_message": "Bộ phận %s của bạn cảm thấy %s",
+        "many_places": "Bạn có nhiều chỗ bị đau...",
+        "bleed_alert": "Bạn đang %s",
+        "revive_player_a": "Hồi sinh người chơi hoặc bản thân (Chỉ Admin)",
+        "player_id": "ID người chơi (có thể trống)",
+        "pain_level": "Đặt cấp độ đau của bạn hoặc người chơi (Chỉ Admin)",
+        "kill": "Giết người chơi hoặc bản thân (Chỉ Admin)",
+        "heal_player_a": "Chữa lành cho người chơi hoặc bản thân (Chỉ Admin)"
+    },
+    "states": {
+        "irritated": "khó chịu",
+        "quite_painful": "khá đau",
+        "painful": "đau đớn",
+        "really_painful": "rất đau đớn",
+        "little_bleed": "chảy máu một chút...",
+        "bleed": "chảy máu...",
+        "lot_bleed": "chảy máu nhiều...",
+        "big_bleed": "chảy máu rất nhiều..."
+    },
+    "body": {
+        "head": "Đầu",
+        "neck": "Cổ",
+        "spine": "Cột sống",
+        "upper_body": "Thân trên",
+        "lower_body": "Thân dưới",
+        "left_arm": "Cánh tay trái",
+        "left_hand": "Bàn tay trái",
+        "left_fingers": "Ngón tay trái",
+        "left_leg": "Chân trái",
+        "left_foot": "Bàn chân trái",
+        "right_arm": "Cánh tay phải",
+        "right_hand": "Bàn tay phải",
+        "right_fingers": "Ngón tay phải",
+        "right_leg": "Chân phải",
+        "right_foot": "Bàn chân phải"
+    },
+    "logs": {
+        "death_log_title": "%s (%s) đã chết",
+        "death_log_message": "%s đã giết %s bằng **%s** (%s)"
+    }
+}

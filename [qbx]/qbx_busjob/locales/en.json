@@ -1,0 +1,22 @@
+{
+    "error": {
+        "already_driving_bus": "Bạn đang lái một chiếc xe buýt rồi",
+        "not_in_bus": "Bạn không ở trong xe buýt",
+        "one_bus_active": "Bạn chỉ có thể có một xe buýt hoạt động cùng một lúc",
+        "drop_off_passengers": "Hãy trả khách trước khi bạn ngừng làm việc",
+        "exploit_attempt": "Phát hiện hành vi gian lận (hoặc: Cố ý khai thác lỗi)",
+        "failed_to_spawn": "Không thể tạo xe buýt"
+    },
+    "info": {
+        "dropped_off": "Đã trả hành khách",
+        "bus": "Xe buýt tiêu chuẩn",
+        "goto_busstop": "Đi đến điểm dừng xe buýt",
+        "busstop_text": "[E] - Điểm dừng xe buýt",
+        "bus_plate": "BUS",
+        "bus_depot": "Bãi đỗ xe buýt",
+        "bus_stop_work": "[E] - Ngừng làm việc",
+        "bus_job_vehicles": "[E] - Xe công việc",
+        "bus_header": "Xe công việc (Bus)",
+        "bus_job": "Nghề lái xe buýt"
+    }
+}

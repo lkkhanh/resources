@@ -1,0 +1,56 @@
+{
+    "error": {
+        "toofast": "Bạn không được đi quá nhanh",
+        "nocheckpoints": "Bạn chưa đặt bất kỳ điểm kiểm tra nào..",
+        "atleast10checkp": "Bạn phải có ít nhất 10 điểm kiểm tra",
+        "higherthan15": "Bạn không thể vượt quá 15",
+        "lowerthan2": "Bạn không thể đi dưới 2",
+        "mustbeinveh": "Bạn phải ở trong xe",
+        "pressagain": "Nhấn [9] một lần nữa để xác nhận",
+        "editorcancelled": "Đã hủy chỉnh sửa đường đua!",
+        "alreadymaking": "Bạn đang tạo một cuộc đua.",
+        "alreadyinrace": "Bạn đang trong một cuộc đua..",
+        "notinarace": "Bạn không đang trong một cuộc đua..",
+        "playerfinished": "%s đã về đích: thứ %s",
+        "gobackorkick": "Quay lại điểm xuất phát hoặc bạn sẽ bị đuổi khỏi cuộc đua: %ss",
+        "namealreadyused": "Đã có một đường đua với tên này.",
+        "notauthorized": "Bạn không được phép %{to}.",
+        "raceended": "Bạn là người duy nhất trong cuộc đua, cuộc đua đã kết thúc",
+        "alreadyrunning": "Cuộc đua đang diễn ra",
+        "notexist": "Đường đua này không tồn tại",
+        "stoppingrace": "Đang dừng cuộc đua: %s",
+        "racenotopen": "Không mở đường đua: %s",
+        "notcreator": "Bạn không phải là người tạo ra cuộc đua..",
+        "notstarted": "Cuộc đua này chưa bắt đầu.",
+        "nomoreraces": "Không thể tạo thêm đường đua!"
+    },
+    "success": {
+        "savedrace": "Đã lưu đường đua: %s!",
+        "finishedbest": "Đua xong trong %s, với vòng đua tốt nhất: %s",
+        "finished": "Đua xong trong: %s",
+        "start": "GO!",
+        "cancreate": "Đã có thể tạo lại đường đua!"
+    },
+    "primary": {
+        "LeaveRace": "Bạn đã hoàn thành cuộc đua!",
+        "startinten": "Cuộc đua sẽ bắt đầu sau 10 giây"
+    },
+    "general": {
+        "CheckL": "Điểm kiểm tra L",
+        "CheckR": "Điểm kiểm tra R",
+        "DNF": "DNF",
+        "unknown": "Không xác định",
+        "dothis": "làm điều này",
+        "createraces": "tạo đường đua"
+    },
+    "phonenotif": {
+        "wonWR": "Bạn đã phá kỷ lục thế giới từ %s với thời gian: %s!",
+        "wonWR2": "Bạn đã phá kỷ lục thế giới từ %s với thời gian: %s!",
+        "joinedrace": "%s. %s đã tham gia cuộc đua!",
+        "LeaveRace": "%s. %s đã hoàn thành cuộc đua!"
+    },
+    "commands": {
+        "cancelrace": "Huỷ cuộc đua đang diễn ra..",
+        "togglesetup": "Bật / tắt thiết lập đường đua"
+    }
+}

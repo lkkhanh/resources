@@ -1,0 +1,33 @@
+{
+    "notify": {
+        "hud_settings_loaded": "Đã tải cài đặt HUD!",
+        "hud_restart": "HUD đang khởi động lại!",
+        "hud_start": "HUD đã được bật!",
+        "hud_command_info": "Lệnh này sẽ đặt lại các cài đặt HUD của bạn!",
+        "load_square_map": "Đang tải bản đồ vuông...",
+        "loaded_square_map": "Đã tải bản đồ vuông!",
+        "load_circle_map": "Đang tải bản đồ tròn...",
+        "loaded_circle_map": "Đã tải bản đồ tròn!",
+        "cinematic_on": "Đã bật chế độ điện ảnh!",
+        "cinematic_off": "Đã tắt chế độ điện ảnh!",
+        "engine_on": "Động cơ đã khởi động!",
+        "engine_off": "Động cơ đã tắt!",
+        "low_fuel": "Nhiên liệu sắp hết!",
+        "access_denied": "Bạn không có quyền truy cập!",
+        "stress_gain": "Cảm thấy căng thẳng hơn!",
+        "stress_removed": "Cảm thấy thư giãn hơn!"
+    },
+    "info": {
+        "open_menu": "Mở Menu"
+    },
+    "commands": {
+        "cash": "tienmat",
+        "bank": "nganhang",
+        "dev": "dev",
+        "help": {
+            "cash": "Kiểm tra số dư tiền mặt",
+            "bank": "Kiểm tra số dư ngân hàng",
+            "dev": "Bật/Tắt chế độ nhà phát triển"
+        }
+    }
+}

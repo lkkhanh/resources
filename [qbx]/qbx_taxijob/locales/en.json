@@ -1,0 +1,30 @@
+{
+    "error": {
+        "already_mission": "Bạn đã làm nhiệm vụ NPC",
+        "not_in_taxi": "Bạn không ở trong xe taxi",
+        "missing_meter": "Xe này không có đồng hồ taxi",
+        "no_vehicle": "Bạn không ở trong xe",
+        "not_active_meter": "Đồng hồ taxi không hoạt động",
+        "no_meter_sight": "Không thấy đồng hồ taxi"
+    },
+    "success": {},
+    "info": {
+        "person_was_dropped_off": "Đã trả khách!",
+        "npc_on_gps": "Nhân viên NPC đã được đánh dấu trên GPS của bạn",
+        "go_to_location": "Đưa NPC đến địa điểm được chỉ định",
+        "vehicle_parking": "[E] - Đỗ xe",
+        "job_vehicles": "[E] - Xe công việc",
+        "drop_off_npc": "[E] - Trả khách",
+        "call_npc": "[E] - Gọi NPC",
+        "blip_name": "Downtown Cab",
+        "taxi_label_1": "Standard Cab",
+        "no_spawn_point": "Không thể tìm thấy địa điểm để đưa xe đến",
+        "taxi_returned": "Xe đã được đỗ",
+        "request_taxi": "[E] - Gọi taxi",
+        "request_taxi_target": "Gọi taxi"
+    },
+    "menu": {
+        "taxi_menu_header": "Xe Taxi",
+        "close_menu": "⬅ Đóng Menu"
+    }
+}
