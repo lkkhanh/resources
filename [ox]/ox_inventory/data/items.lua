@@ -59,7 +59,7 @@ return {
     },
 
     ['burger'] = {
-        label = 'Bánh Mì Kẹp',
+        label = 'Burger',
         weight = 220,
         client = {
             status = { hunger = 200000 },
