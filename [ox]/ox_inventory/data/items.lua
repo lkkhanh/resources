@@ -1,6 +1,6 @@
 return {
     ['testburger'] = {
-        label = 'Test Burger',
+        label = 'Burger Thử Nghiệm',
         weight = 220,
         degrade = 60,
         client = {
@@ -17,13 +17,13 @@ return {
         },
         buttons = {
             {
-                label = 'Lick it',
+                label = 'Liếm thử',
                 action = function(slot)
                     print('You licked the burger')
                 end
             },
             {
-                label = 'Squeeze it',
+                label = 'Bóp thử',
                 action = function(slot)
                     print('You squeezed the burger :(')
                 end
@@ -54,12 +54,12 @@ return {
     },
 
     ['bandage'] = {
-        label = 'Bandage',
+        label = 'Băng gạc',
         weight = 115,
     },
 
     ['burger'] = {
-        label = 'Burger',
+        label = 'Bánh Mì Kẹp',
         weight = 220,
         client = {
             status = { hunger = 200000 },
@@ -71,7 +71,7 @@ return {
     },
 
     ['sprunk'] = {
-        label = 'Sprunk',
+        label = 'Nước Sprunk',
         weight = 350,
         client = {
             status = { thirst = 200000 },
@@ -83,7 +83,7 @@ return {
     },
 
     ['parachute'] = {
-        label = 'Parachute',
+        label = 'Dù',
         weight = 8000,
         stack = false,
         client = {
@@ -93,11 +93,11 @@ return {
     },
 
     ['garbage'] = {
-        label = 'Garbage',
+        label = 'Rác',
     },
 
     ['paperbag'] = {
-        label = 'Paper Bag',
+        label = 'Túi giấy',
         weight = 1,
         stack = false,
         close = false,
@@ -105,7 +105,7 @@ return {
     },
 
     ['panties'] = {
-        label = 'Knickers',
+        label = 'Quần lót',
         weight = 10,
         consume = 0,
         client = {
@@ -117,12 +117,12 @@ return {
     },
 
     ['lockpick'] = {
-        label = 'Lockpick',
+        label = 'Dụng cụ phá khóa',
         weight = 160,
     },
 
     ['phone'] = {
-        label = 'Phone',
+        label = 'Điện thoại',
         weight = 190,
         stack = false,
         consume = 0,
@@ -142,7 +142,7 @@ return {
     },
 
     ['mustard'] = {
-        label = 'Mustard',
+        label = 'Mù tạt',
         weight = 500,
         client = {
             status = { hunger = 25000, thirst = 25000 },
@@ -154,7 +154,7 @@ return {
     },
 
     ['water'] = {
-        label = 'Water',
+        label = 'Nước lọc',
         weight = 500,
         client = {
             status = { thirst = 200000 },
@@ -167,7 +167,7 @@ return {
     },
 
     ['armour'] = {
-        label = 'Bulletproof Vest',
+        label = 'Áo chống đạn',
         weight = 3000,
         stack = false,
         client = {
@@ -177,36 +177,36 @@ return {
     },
 
     ['clothing'] = {
-        label = 'Clothing',
+        label = 'Quần áo',
         consume = 0,
     },
 
     ['money'] = {
-        label = 'Money',
+        label = 'Tiền mặt',
     },
 
     ['black_money'] = {
-        label = 'Dirty Money',
+        label = 'Tiền bẩn',
     },
 
     ['id_card'] = {
-        label = 'Identification Card',
+        label = 'Chứng minh nhân dân',
     },
 
     ['driver_license'] = {
-        label = 'Drivers License',
+        label = 'Bằng lái xe',
     },
 
     ['weaponlicense'] = {
-        label = 'Weapon License',
+        label = 'Giấy phép sử dụng vũ khí',
     },
 
     ['lawyerpass'] = {
-        label = 'Lawyer Pass',
+        label = 'Thẻ luật sư',
     },
 
     ['radio'] = {
-        label = 'Radio',
+        label = 'Bộ đàm',
         weight = 1000,
         allowArmed = true,
         consume = 0,
@@ -216,7 +216,7 @@ return {
     },
 
     ['jammer'] = {
-        label = 'Radio Jammer',
+        label = 'Máy phá sóng',
         weight = 10000,
         allowArmed = true,
         client = {
@@ -225,7 +225,7 @@ return {
     },
 
     ['radiocell'] = {
-        label = 'AAA Cells',
+        label = 'Pin AAA',
         weight = 1000,
         stack = true,
         allowArmed = true,
@@ -235,402 +235,402 @@ return {
     },
 
     ['advancedlockpick'] = {
-        label = 'Advanced Lockpick',
+        label = 'Dụng cụ phá khóa cao cấp',
         weight = 500,
     },
 
     ['screwdriverset'] = {
-        label = 'Screwdriver Set',
+        label = 'Bộ tua vít',
         weight = 500,
     },
 
     ['electronickit'] = {
-        label = 'Electronic Kit',
+        label = 'Bộ linh kiện điện tử',
         weight = 500,
     },
 
     ['cleaningkit'] = {
-        label = 'Cleaning Kit',
+        label = 'Bộ vệ sinh vũ khí',
         weight = 500,
     },
 
     ['repairkit'] = {
-        label = 'Repair Kit',
+        label = 'Bộ sửa chữa',
         weight = 2500,
     },
 
     ['advancedrepairkit'] = {
-        label = 'Advanced Repair Kit',
+        label = 'Bộ sửa chữa cao cấp',
         weight = 4000,
     },
 
     ['diamond_ring'] = {
-        label = 'Diamond',
+        label = 'Kim cương',
         weight = 1500,
     },
 
     ['rolex'] = {
-        label = 'Golden Watch',
+        label = 'Đồng hồ vàng',
         weight = 1500,
     },
 
     ['goldbar'] = {
-        label = 'Gold Bar',
+        label = 'Thỏi vàng',
         weight = 1500,
     },
 
     ['goldchain'] = {
-        label = 'Golden Chain',
+        label = 'Dây chuyền vàng',
         weight = 1500,
     },
 
     ['crack_baggy'] = {
-        label = 'Crack Baggy',
+        label = 'Túi Crack',
         weight = 100,
     },
 
     ['cokebaggy'] = {
-        label = 'Bag of Coke',
+        label = 'Túi Cocaine',
         weight = 100,
     },
 
     ['coke_brick'] = {
-        label = 'Coke Brick',
+        label = 'Bánh Cocaine',
         weight = 2000,
     },
 
     ['coke_small_brick'] = {
-        label = 'Coke Package',
+        label = 'Gói Cocaine',
         weight = 1000,
     },
 
     ['xtcbaggy'] = {
-        label = 'Bag of Ecstasy',
+        label = 'Túi thuốc lắc',
         weight = 100,
     },
 
     ['meth'] = {
-        label = 'Methamphetamine',
+        label = 'Ma túy đá (Meth)',
         weight = 100,
     },
 
     ['oxy'] = {
-        label = 'Oxycodone',
+        label = 'Thuốc Oxycodone',
         weight = 100,
     },
 
     ['weed_ak47'] = {
-        label = 'AK47 2g',
+        label = 'Cỏ AK47 2g',
         weight = 200,
     },
 
     ['weed_ak47_seed'] = {
-        label = 'AK47 Seed',
+        label = 'Hạt giống cỏ AK47',
         weight = 1,
     },
 
     ['weed_skunk'] = {
-        label = 'Skunk 2g',
+        label = 'Cỏ Skunk 2g',
         weight = 200,
     },
 
     ['weed_skunk_seed'] = {
-        label = 'Skunk Seed',
+        label = 'Hạt giống cỏ Skunk',
         weight = 1,
     },
 
     ['weed_amnesia'] = {
-        label = 'Amnesia 2g',
+        label = 'Cỏ Amnesia 2g',
         weight = 200,
     },
 
     ['weed_amnesia_seed'] = {
-        label = 'Amnesia Seed',
+        label = 'Hạt giống cỏ Amnesia',
         weight = 1,
     },
 
     ['weed_og-kush'] = {
-        label = 'OGKush 2g',
+        label = 'Cỏ OG Kush 2g',
         weight = 200,
     },
 
     ['weed_og-kush_seed'] = {
-        label = 'OGKush Seed',
+        label = 'Hạt giống cỏ OG Kush',
         weight = 1,
     },
 
     ['weed_white-widow'] = {
-        label = 'OGKush 2g',
+        label = 'Cỏ OG Kush 2g',
         weight = 200,
     },
 
     ['weed_white-widow_seed'] = {
-        label = 'White Widow Seed',
+        label = 'Hạt giống White Widow',
         weight = 1,
     },
 
     ['weed_purple-haze'] = {
-        label = 'Purple Haze 2g',
+        label = 'Cỏ Purple Haze 2g',
         weight = 200,
     },
 
     ['weed_purple-haze_seed'] = {
-        label = 'Purple Haze Seed',
+        label = 'Hạt giống Purple Haze',
         weight = 1,
     },
 
     ['weed_brick'] = {
-        label = 'Weed Brick',
+        label = 'Bánh cỏ',
         weight = 2000,
     },
 
     ['weed_nutrition'] = {
-        label = 'Plant Fertilizer',
+        label = 'Phân bón cây',
         weight = 2000,
     },
 
     ['joint'] = {
-        label = 'Joint',
+        label = 'Điếu cỏ',
         weight = 200,
     },
 
     ['rolling_paper'] = {
-        label = 'Rolling Paper',
+        label = 'Giấy cuốn',
         weight = 0,
     },
 
     ['empty_weed_bag'] = {
-        label = 'Empty Weed Bag',
+        label = 'Túi đựng cỏ trống',
         weight = 0,
     },
 
     ['firstaid'] = {
-        label = 'First Aid',
+        label = 'Hộp sơ cứu',
         weight = 2500,
     },
 
     ['ifaks'] = {
-        label = 'Individual First Aid Kit',
+        label = 'Túi sơ cứu cá nhân',
         weight = 2500,
     },
 
     ['painkillers'] = {
-        label = 'Painkillers',
+        label = 'Thuốc giảm đau',
         weight = 400,
     },
 
     ['firework1'] = {
-        label = '2Brothers',
+        label = 'Rượu 2Brothers',
         weight = 1000,
     },
 
     ['firework2'] = {
-        label = 'Poppelers',
+        label = 'Thuốc Poppelers',
         weight = 1000,
     },
 
     ['firework3'] = {
-        label = 'WipeOut',
+        label = 'Thuốc WipeOut',
         weight = 1000,
     },
 
     ['firework4'] = {
-        label = 'Weeping Willow',
+        label = 'Thuốc Weeping Willow',
         weight = 1000,
     },
 
     ['steel'] = {
-        label = 'Steel',
+        label = 'Thép',
         weight = 100,
     },
 
     ['rubber'] = {
-        label = 'Rubber',
+        label = 'Cao su',
         weight = 100,
     },
 
     ['metalscrap'] = {
-        label = 'Metal Scrap',
+        label = 'Phế liệu kim loại',
         weight = 100,
     },
 
     ['iron'] = {
-        label = 'Iron',
+        label = 'Sắt',
         weight = 100,
     },
 
     ['copper'] = {
-        label = 'Copper',
+        label = 'Đồng',
         weight = 100,
     },
 
     ['aluminum'] = {
-        label = 'Aluminium',
+        label = 'Nhôm',
         weight = 100,
     },
 
     ['plastic'] = {
-        label = 'Plastic',
+        label = 'Nhựa',
         weight = 100,
     },
 
     ['glass'] = {
-        label = 'Glass',
+        label = 'Thủy tinh',
         weight = 100,
     },
 
     ['gatecrack'] = {
-        label = 'Gatecrack',
+        label = 'Dụng cụ phá cổng',
         weight = 1000,
     },
 
     ['cryptostick'] = {
-        label = 'Crypto Stick',
+        label = 'USB Crypto',
         weight = 100,
     },
 
     ['trojan_usb'] = {
-        label = 'Trojan USB',
+        label = 'USB Trojan',
         weight = 100,
     },
 
     ['toaster'] = {
-        label = 'Toaster',
+        label = 'Máy nướng bánh mì',
         weight = 5000,
     },
 
     ['small_tv'] = {
-        label = 'Small TV',
+        label = 'Tivi nhỏ',
         weight = 100,
     },
 
     ['security_card_01'] = {
-        label = 'Security Card A',
+        label = 'Thẻ an ninh A',
         weight = 100,
     },
 
     ['security_card_02'] = {
-        label = 'Security Card B',
+        label = 'Thẻ an ninh B',
         weight = 100,
     },
 
     ['drill'] = {
-        label = 'Drill',
+        label = 'Máy khoan',
         weight = 5000,
     },
 
     ['thermite'] = {
-        label = 'Thermite',
+        label = 'Thuốc nổ Thermite',
         weight = 1000,
     },
 
     ['diving_gear'] = {
-        label = 'Diving Gear',
+        label = 'Đồ lặn',
         weight = 30000,
     },
 
     ['diving_fill'] = {
-        label = 'Diving Tube',
+        label = 'Bình lặn',
         weight = 3000,
     },
 
     ['antipatharia_coral'] = {
-        label = 'Antipatharia',
+        label = 'San hô đen',
         weight = 1000,
     },
 
     ['dendrogyra_coral'] = {
-        label = 'Dendrogyra',
+        label = 'San hô Dendrogyra',
         weight = 1000,
     },
 
     ['jerry_can'] = {
-        label = 'Jerrycan',
+        label = 'Can xăng',
         weight = 3000,
     },
 
     ['nitrous'] = {
-        label = 'Nitrous',
+        label = 'Bình Nitrous (NOS)',
         weight = 1000,
     },
 
     ['wine'] = {
-        label = 'Wine',
+        label = 'Rượu vang',
         weight = 500,
     },
 
     ['grape'] = {
-        label = 'Grape',
+        label = 'Nho',
         weight = 10,
     },
 
     ['grapejuice'] = {
-        label = 'Grape Juice',
+        label = 'Nước ép nho',
         weight = 200,
     },
 
     ['coffee'] = {
-        label = 'Coffee',
+        label = 'Cà phê',
         weight = 200,
     },
 
     ['vodka'] = {
-        label = 'Vodka',
+        label = 'Rượu Vodka',
         weight = 500,
     },
 
     ['whiskey'] = {
-        label = 'Whiskey',
+        label = 'Rượu Whiskey',
         weight = 200,
     },
 
     ['beer'] = {
-        label = 'Beer',
+        label = 'Bia',
         weight = 200,
     },
 
     ['sandwich'] = {
-        label = 'Sandwich',
+        label = 'Bánh mì Sandwich',
         weight = 200,
     },
 
     ['walking_stick'] = {
-        label = 'Walking Stick',
+        label = 'Gậy đi bộ',
         weight = 1000,
     },
 
     ['lighter'] = {
-        label = 'Lighter',
+        label = 'Bật lửa',
         weight = 200,
     },
 
     ['binoculars'] = {
-        label = 'Binoculars',
+        label = 'Ống nhòm',
         weight = 800,
     },
 
     ['stickynote'] = {
-        label = 'Sticky Note',
+        label = 'Giấy nhớ',
         weight = 0,
     },
 
     ['empty_evidence_bag'] = {
-        label = 'Empty Evidence Bag',
+        label = 'Túi bằng chứng trống',
         weight = 200,
     },
 
     ['filled_evidence_bag'] = {
-        label = 'Filled Evidence Bag',
+        label = 'Túi bằng chứng',
         weight = 200,
     },
 
     ['harness'] = {
-        label = 'Harness',
+        label = 'Dây an toàn',
         weight = 200,
     },
 
     ['handcuffs'] = {
-        label = 'Handcuffs',
+        label = 'Còng số 8',
         weight = 200,
     },
 }

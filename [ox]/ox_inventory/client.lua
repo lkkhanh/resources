@@ -1780,6 +1780,30 @@ RegisterNUICallback('useButton', function(data, cb)
 	cb(1)
 end)
 
+RegisterNUICallback('craftItem', function(data, cb)
+	if data.id then
+		client.closeInventory()
+		lib.callback('ox_inventory:craftItem', false, function() end, data.id, data.index, data.recipe)
+	end
+	cb(1)
+end)
+
+RegisterNUICallback('deleteItem', function(data, cb)
+    if data.slot and data.count then
+        TriggerServerEvent('ox_inventory:deleteItem', data.slot, data.count)
+    end
+    cb(1)
+end)
+
+RegisterNUICallback('equipClothing', function(data, cb)
+    if data.slot and data.item then
+        -- Simulates using the item when dragged to the slot
+        -- This will trigger the clothing script's use event
+        exports.ox_inventory:useSlot(data.item.slot)
+    end
+    cb(1)
+end)
+
 RegisterNUICallback('exit', function(_, cb)
 	client.closeInventory()
 	cb(1)

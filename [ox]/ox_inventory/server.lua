@@ -779,3 +779,14 @@ lib.registerHook('ox_lib:setPlayerState', nil, {
 lib.registerHook('ox_lib:setPlayerState', nil, {
     key = 'canSteal'
 })
+
+RegisterNetEvent('ox_inventory:deleteItem', function(slot, count)
+    local src = source
+    local inventory = Inventory(src)
+    if not inventory then return end
+    
+    local item = inventory.items[slot]
+    if item then
+        Inventory.RemoveItem(inventory.id, item.name, count, nil, slot)
+    end
+end)
