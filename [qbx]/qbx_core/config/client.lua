@@ -11,7 +11,7 @@ return {
 
         dateFormat = 'YYYY-MM-DD',
         dateMin = '1900-01-01', -- Has to be in the same format as the dateFormat config
-        dateMax = '2006-12-31', -- Has to be in the same format as the dateFormat config
+        dateMax = '2026-12-31', -- Has to be in the same format as the dateFormat config
 
         limitNationalities = true, -- Setting this to false will allow people to enter whatever they want in the nationality field (To edit the list of nationalities, head to data/nationalities.lua)
 

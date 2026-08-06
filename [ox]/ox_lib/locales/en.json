@@ -2,9 +2,9 @@
   "language": "English",
   "settings": "Settings",
   "ui": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
+    "cancel": "Hủy bỏ",
+    "close": "Đóng",
+    "confirm": "Xác nhận",
     "more": "More...",
     "settings": {
       "locale": "Change locale",

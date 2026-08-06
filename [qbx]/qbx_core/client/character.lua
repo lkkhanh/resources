@@ -194,15 +194,8 @@ local function characterDialog()
             type = 'input',
             required = true,
             icon = 'user-pen',
-            label = locale('info.first_name'),
-            placeholder = 'Hank'
-        },
-        {
-            type = 'input',
-            required = true,
-            icon = 'user-pen',
-            label = locale('info.last_name'),
-            placeholder = 'Jordan'
+            label = locale('info.first_name') .. ' & ' .. locale('info.last_name'),
+            placeholder = 'Hank Jordan'
         },
         nationalityOption,
         {
@@ -307,7 +300,7 @@ local function createCharacter(cid)
 
     if not dialog then return false end
 
-    for input = 1, 3 do -- Run through first 3 inputs, aka first name, last name and nationality
+    for input = 1, 2 do -- Run through first 2 inputs, aka full name and nationality
         if not checkStrings(dialog, input) then
             Notify(locale('error.no_match_character_registration'), 'error', 10000)
             goto noMatch
@@ -315,13 +308,22 @@ local function createCharacter(cid)
         end
     end
 
+    local fullName = dialog[1] or ""
+    local spaceIndex = string.find(fullName, " ")
+    local firstName = fullName
+    local lastName = ""
+    if spaceIndex then
+        firstName = string.sub(fullName, 1, spaceIndex - 1)
+        lastName = string.sub(fullName, spaceIndex + 1)
+    end
+
     DoScreenFadeOut(150)
     local newData = lib.callback.await('qbx_core:server:createCharacter', false, {
-        firstname = capString(dialog[1]),
-        lastname = capString(dialog[2]),
-        nationality = capString(dialog[3]),
-        gender = dialog[4] == locale('info.char_male') and 0 or 1,
-        birthdate = dialog[5],
+        firstname = capString(firstName),
+        lastname = capString(lastName),
+        nationality = capString(dialog[2]),
+        gender = dialog[3] == locale('info.char_male') and 0 or 1,
+        birthdate = dialog[4],
         cid = cid
     })
 

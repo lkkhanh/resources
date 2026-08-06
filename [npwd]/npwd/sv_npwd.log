@@ -945,3 +945,57 @@
 {"level":"info","message":"Executed query (SELECT id FROM npwd_marketplace_listings WHERE identifier = ? [\"PFV2Q821\"]) in 13.7658ms'","module":"DBInterface","timestamp":"2026-08-06T16:28:26.290Z"}
 {"level":"info","message":"Executed query (DELETE FROM npwd_marketplace_listings WHERE identifier = ? AND reported = 0 [\"PFV2Q821\"]) in 4.6768ms'","module":"DBInterface","timestamp":"2026-08-06T16:28:26.295Z"}
 {"level":"info","message":"Unloaded NPWD Player, source: (1)","module":"player","timestamp":"2026-08-06T16:28:26.296Z"}
+{"level":"debug","message":"Marketplace service started","module":"marketplace","timestamp":"2026-08-06T16:30:32.301Z"}
+{"level":"debug","message":"Call service started","module":"calls","timestamp":"2026-08-06T16:30:32.304Z"}
+{"level":"debug","message":"Player Service started","module":"player","timestamp":"2026-08-06T16:30:32.305Z"}
+{"level":"info","message":"Loading QBX bridge....","timestamp":"2026-08-06T16:30:32.305Z"}
+{"level":"info","message":"QBX bridge initialized","timestamp":"2026-08-06T16:30:32.305Z"}
+{"level":"debug","message":"Boot service started","module":"boot","timestamp":"2026-08-06T16:30:32.306Z"}
+{"level":"debug","message":"Messages service started","module":"messages","timestamp":"2026-08-06T16:30:32.306Z"}
+{"level":"debug","message":"Notes service started","module":"notes","timestamp":"2026-08-06T16:30:32.307Z"}
+{"level":"debug","message":"Contacts service started","module":"contact","timestamp":"2026-08-06T16:30:32.307Z"}
+{"level":"debug","message":"Photo service started","module":"photo","timestamp":"2026-08-06T16:30:32.321Z"}
+{"level":"debug","message":"Twitter service started","module":"twitter","timestamp":"2026-08-06T16:30:32.321Z"}
+{"level":"debug","message":"Match service started","module":"match","timestamp":"2026-08-06T16:30:32.322Z"}
+{"level":"debug","message":"Beginning database schema validation","module":"boot","timestamp":"2026-08-06T16:30:33.754Z"}
+{"level":"info","message":"Successfully started","timestamp":"2026-08-06T16:30:33.779Z"}
+{"level":"info","message":"Executed query (SELECT COUNT(*) as count\n                       FROM information_schema.tables\n                       WHERE table_schema = ?\n                         AND table_name = ? [\"Qbox_7217A1\",\"players\"]) in 194.2477ms'","module":"DBInterface","timestamp":"2026-08-06T16:30:33.949Z"}
+{"level":"info","message":"Executed query (SHOW COLUMNS IN players []) in 29.8224ms'","module":"DBInterface","timestamp":"2026-08-06T16:30:33.980Z"}
+{"level":"debug","message":"Database schema successfully validated","module":"boot","timestamp":"2026-08-06T16:30:33.980Z"}
+{"level":"debug","message":"1 failed to unload, likely was never loaded in the first place.","module":"player","timestamp":"2026-08-06T17:01:03.727Z"}
+{"level":"debug","message":"Marketplace service started","module":"marketplace","timestamp":"2026-08-06T17:01:12.345Z"}
+{"level":"debug","message":"Call service started","module":"calls","timestamp":"2026-08-06T17:01:12.346Z"}
+{"level":"debug","message":"Player Service started","module":"player","timestamp":"2026-08-06T17:01:12.346Z"}
+{"level":"info","message":"Loading QBX bridge....","timestamp":"2026-08-06T17:01:12.347Z"}
+{"level":"info","message":"QBX bridge initialized","timestamp":"2026-08-06T17:01:12.347Z"}
+{"level":"debug","message":"Boot service started","module":"boot","timestamp":"2026-08-06T17:01:12.347Z"}
+{"level":"debug","message":"Messages service started","module":"messages","timestamp":"2026-08-06T17:01:12.347Z"}
+{"level":"debug","message":"Notes service started","module":"notes","timestamp":"2026-08-06T17:01:12.348Z"}
+{"level":"debug","message":"Contacts service started","module":"contact","timestamp":"2026-08-06T17:01:12.348Z"}
+{"level":"debug","message":"Photo service started","module":"photo","timestamp":"2026-08-06T17:01:12.354Z"}
+{"level":"debug","message":"Twitter service started","module":"twitter","timestamp":"2026-08-06T17:01:12.354Z"}
+{"level":"debug","message":"Match service started","module":"match","timestamp":"2026-08-06T17:01:12.355Z"}
+{"level":"debug","message":"Beginning database schema validation","module":"boot","timestamp":"2026-08-06T17:01:13.202Z"}
+{"level":"info","message":"Successfully started","timestamp":"2026-08-06T17:01:13.222Z"}
+{"level":"info","message":"Executed query (SELECT COUNT(*) as count\n                       FROM information_schema.tables\n                       WHERE table_schema = ?\n                         AND table_name = ? [\"Qbox_7217A1\",\"players\"]) in 106.5153ms'","module":"DBInterface","timestamp":"2026-08-06T17:01:13.310Z"}
+{"level":"info","message":"Executed query (SHOW COLUMNS IN players []) in 45.2002ms'","module":"DBInterface","timestamp":"2026-08-06T17:01:13.355Z"}
+{"level":"debug","message":"Database schema successfully validated","module":"boot","timestamp":"2026-08-06T17:01:13.356Z"}
+{"level":"debug","message":"1 failed to unload, likely was never loaded in the first place.","module":"player","timestamp":"2026-08-06T17:05:32.684Z"}
+{"level":"debug","message":"Marketplace service started","module":"marketplace","timestamp":"2026-08-06T17:05:43.427Z"}
+{"level":"debug","message":"Call service started","module":"calls","timestamp":"2026-08-06T17:05:43.433Z"}
+{"level":"debug","message":"Player Service started","module":"player","timestamp":"2026-08-06T17:05:43.434Z"}
+{"level":"info","message":"Loading QBX bridge....","timestamp":"2026-08-06T17:05:43.434Z"}
+{"level":"info","message":"QBX bridge initialized","timestamp":"2026-08-06T17:05:43.435Z"}
+{"level":"debug","message":"Boot service started","module":"boot","timestamp":"2026-08-06T17:05:43.436Z"}
+{"level":"debug","message":"Messages service started","module":"messages","timestamp":"2026-08-06T17:05:43.437Z"}
+{"level":"debug","message":"Notes service started","module":"notes","timestamp":"2026-08-06T17:05:43.437Z"}
+{"level":"debug","message":"Contacts service started","module":"contact","timestamp":"2026-08-06T17:05:43.437Z"}
+{"level":"debug","message":"Photo service started","module":"photo","timestamp":"2026-08-06T17:05:43.451Z"}
+{"level":"debug","message":"Twitter service started","module":"twitter","timestamp":"2026-08-06T17:05:43.452Z"}
+{"level":"debug","message":"Match service started","module":"match","timestamp":"2026-08-06T17:05:43.452Z"}
+{"level":"debug","message":"Beginning database schema validation","module":"boot","timestamp":"2026-08-06T17:05:44.522Z"}
+{"level":"info","message":"Successfully started","timestamp":"2026-08-06T17:05:44.544Z"}
+{"level":"info","message":"Executed query (SELECT COUNT(*) as count\n                       FROM information_schema.tables\n                       WHERE table_schema = ?\n                         AND table_name = ? [\"Qbox_7217A1\",\"players\"]) in 180.1954ms'","module":"DBInterface","timestamp":"2026-08-06T17:05:44.703Z"}
+{"level":"info","message":"Executed query (SHOW COLUMNS IN players []) in 30.2923ms'","module":"DBInterface","timestamp":"2026-08-06T17:05:44.734Z"}
+{"level":"debug","message":"Database schema successfully validated","module":"boot","timestamp":"2026-08-06T17:05:44.734Z"}
+{"level":"debug","message":"1 failed to unload, likely was never loaded in the first place.","module":"player","timestamp":"2026-08-06T17:08:18.063Z"}
