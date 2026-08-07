@@ -45,11 +45,11 @@ return {
         [`rrocket`] = true,
         [`ruiner2`] = true,
         [`deluxo`] = true,
-        [`s_m_y_ranger_01`] = true,
-        [`s_m_y_sheriff_01`] = true,
-        [`s_m_y_cop_01`] = true,
-        [`s_f_y_sheriff_01`] = true,
-        [`s_f_y_cop_01`] = true,
-        [`s_m_y_hwaycop_01`] = true
+        -- [`s_m_y_ranger_01`] = true,
+        -- [`s_m_y_sheriff_01`] = true,
+        -- [`s_m_y_cop_01`] = true,
+        -- [`s_f_y_sheriff_01`] = true,
+        -- [`s_f_y_cop_01`] = true,
+        -- [`s_m_y_hwaycop_01`] = true
     }
 }

@@ -74,11 +74,39 @@ function StartLastStand(attacker, weapon)
     SetDeathState(sharedConfig.deathState.LAST_STAND)
     TriggerEvent('qbx_medical:client:onPlayerLaststand', attacker, weapon)
     TriggerServerEvent('qbx_medical:server:onPlayerLaststand', attacker, weapon)
+    local lsRespawnHoldTime = 5
+    
     CreateThread(function()
         while DeathState == sharedConfig.deathState.LAST_STAND do
+            if lsRespawnHoldTime == 5 then
+                lib.showTextUI(('[E] Giữ phím trong 5s để Bỏ cuộc (%d giây nữa sẽ kiệt sức)'):format(LaststandTime))
+            else
+                lib.showTextUI(('[E] Đang bỏ cuộc... (%d)'):format(lsRespawnHoldTime))
+            end
+
+            if IsControlPressed(0, 38) and lsRespawnHoldTime <= 1 then
+                lib.hideTextUI()
+                EndLastStand()
+                DeathTime = 0
+                exports.qbx_medical:AllowRespawn() -- Fix: Cưỡng chế mở lại quyền respawn đề phòng kẹt từ lần test trước
+                OnDeath(cache.ped, `WEAPON_UNARMED`)
+                return
+            end
+            
+            if IsControlPressed(0, 38) then
+                lsRespawnHoldTime -= 1
+            end
+            if IsControlReleased(0, 38) then
+                lsRespawnHoldTime = 5
+            end
+            if lsRespawnHoldTime <= 0 then
+                lsRespawnHoldTime = 0
+            end
+
             countdownLastStand()
             Wait(1000)
         end
+        lib.hideTextUI()
     end)
 
     CreateThread(function()

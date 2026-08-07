@@ -218,6 +218,7 @@ RegisterNetEvent('qbx_medical:client:playerRevived', function()
         SetDeathState(sharedConfig.deathState.ALIVE)
         SetEntityInvincible(cache.ped, false)
         EndLastStand()
+        ClearPedTasks(cache.ped)
     end
 
     SetEntityMaxHealth(cache.ped, 200)
@@ -229,4 +230,49 @@ RegisterNetEvent('qbx_medical:client:playerRevived', function()
     TriggerServerEvent('hud:server:RelieveStress', 100)
     exports.qbx_core:Notify(locale('info.healthy'), 'inform')
     LocalPlayer.state.invBusy = false
+end)
+
+-- Tính năng: Cho phép mọi người chơi sơ cứu người chết bằng phím ALT (Target)
+CreateThread(function()
+    exports.ox_target:addGlobalPlayer({
+        {
+            name = 'revive_dead_player',
+            icon = 'fas fa-heartbeat',
+            label = 'Cấp cứu (Hồi sinh)',
+            canInteract = function(entity, distance, coords, name, bone)
+                local targetPlayerId = NetworkGetPlayerIndexFromPed(entity)
+                if targetPlayerId == -1 then return false end
+                local targetState = Player(targetPlayerId).state
+                return targetState.isDead
+            end,
+            onSelect = function(data)
+                local targetPed = data.entity
+                local targetPlayerId = NetworkGetPlayerIndexFromPed(targetPed)
+                local serverId = GetPlayerServerId(targetPlayerId)
+                
+                -- Phát animation cấp cứu (CPR)
+                lib.playAnim(cache.ped, 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest', 8.0, -8.0, -1, 1, 0, false, false, false)
+                
+                if lib.progressCircle({
+                    duration = 5000,
+                    label = 'Đang tiến hành sơ cứu...',
+                    position = 'bottom',
+                    useWhileDead = false,
+                    canCancel = true,
+                    disable = {
+                        move = true,
+                        combat = true,
+                        car = true
+                    }
+                }) then
+                    TriggerServerEvent('qbx_medical:server:revivePlayer', serverId)
+                    exports.qbx_core:Notify('Đã sơ cứu thành công!', 'success')
+                else
+                    exports.qbx_core:Notify('Đã hủy sơ cứu!', 'error')
+                end
+                
+                ClearPedTasks(cache.ped)
+            end
+        }
+    })
 end)

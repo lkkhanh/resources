@@ -190,3 +190,16 @@ end)
 lib.callback.register('qbx_medical:server:log', function(_, event, message)
 	logger.log({source = 'qbx_medical', event = event, message = message})
 end)
+
+RegisterNetEvent('qbx_medical:server:revivePlayer', function(targetId)
+    local src = source
+    local targetPed = GetPlayerPed(targetId)
+    local sourcePed = GetPlayerPed(src)
+    
+    if targetPed ~= 0 and sourcePed ~= 0 then
+        if #(GetEntityCoords(sourcePed) - GetEntityCoords(targetPed)) < 5.0 then
+            revivePlayer(targetId)
+            heal(targetId)
+        end
+    end
+end)

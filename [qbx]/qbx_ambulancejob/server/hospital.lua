@@ -23,6 +23,8 @@ local function getOpenBed(hospitalName)
 		local isTaken = beds[i]
 		if not isTaken then return i end
 	end
+    -- Fix: Nếu tất cả giường đều bị kẹt (do lỗi thoát ngang), chọn đại một giường thay vì kẹt luôn script
+    return math.random(1, #beds)
 end
 
 lib.callback.register('qbx_ambulancejob:server:getOpenBed', function(_, hospitalName)
@@ -129,8 +131,15 @@ exports('CheckIn', checkIn)
 
 local function respawn(src)
 	local player = exports.qbx_core:GetPlayer(src)
-	local closestHospital
-	if player.PlayerData.metadata.injail > 0 then
+	if not player then return end
+	
+	if Player(src).state.isWantedByNPC then
+		TriggerEvent('qbx_npccops:server:executePenalty', src)
+		return
+	end
+
+	local closestHospital = 'pillbox'
+	if (player.PlayerData.metadata.injail or 0) > 0 then
 		closestHospital = 'jail'
 	else
 		local coords = GetEntityCoords(GetPlayerPed(src))
@@ -146,12 +155,12 @@ local function respawn(src)
 		end
 	end
 
-	local bedIndex = getOpenBed(closestHospital)
-	if not bedIndex then
-		exports.qbx_core:Notify(src, locale('error.beds_taken'), 'error')
-		return
-	end
-	TriggerClientEvent('qbx_ambulancejob:client:checkedIn', src, closestHospital, bedIndex)
+	player.Functions.RemoveMoney('bank', sharedConfig.checkInCost, 'respawned-at-hospital')
+	pcall(function() exports.qbx_medical:Heal(src) end)
+	TriggerClientEvent('hospital:client:SendBillEmail', src, sharedConfig.checkInCost)
+	
+	-- Bỏ qua getOpenBed vì client không còn dùng giường bệnh nữa
+	TriggerClientEvent('qbx_ambulancejob:client:checkedIn', src, closestHospital, 1)
 
 	if config.wipeInvOnRespawn then
 		wipeInventory(src)

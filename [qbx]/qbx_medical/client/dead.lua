@@ -26,6 +26,7 @@ exports('PlayDeadAnimation', playDeadAnimation)
 
 ---put player in death animation and make invincible
 function OnDeath(attacker, weapon)
+    exports.qbx_medical:AllowRespawn() -- FIX: Đảm bảo biến allowRespawn không bao giờ bị kẹt false
     SetDeathState(sharedConfig.deathState.DEAD)
     TriggerEvent('qbx_medical:client:onPlayerDied', attacker, weapon)
     TriggerServerEvent('qbx_medical:server:onPlayerDied', attacker, weapon)
@@ -43,6 +44,7 @@ function OnDeath(attacker, weapon)
     plyState.invBusy = true
 
     ResurrectPlayer()
+    Wait(50) -- Fix: Đợi FiveM clear xong frame trước khi ép animation
     playDeadAnimation()
     SetEntityInvincible(cache.ped, true)
     SetEntityHealth(cache.ped, GetEntityMaxHealth(cache.ped))
@@ -61,11 +63,21 @@ local function respawn()
     plyState.invBusy = false
 end
 
----Allow player to respawn
 function CheckForRespawn()
     RespawnHoldTime = 5
     while DeathState == sharedConfig.deathState.DEAD do
+        if allowRespawn then
+            if RespawnHoldTime == 5 then
+                lib.showTextUI(('[E] Giữ phím trong 5s để Bỏ cuộc (%d giây nữa sẽ tự động hồi sinh)'):format(DeathTime))
+            else
+                lib.showTextUI(('[E] Đang hồi sinh... (%d)'):format(RespawnHoldTime))
+            end
+        else
+            lib.hideTextUI()
+        end
+
         if IsControlPressed(0, 38) and RespawnHoldTime <= 1 and allowRespawn then
+            lib.hideTextUI()
             respawn()
             return
         end
@@ -80,11 +92,13 @@ function CheckForRespawn()
         end
         DeathTime -= 1
         if DeathTime <= 0 and allowRespawn then
+            lib.hideTextUI()
             respawn()
             return
         end
         Wait(1000)
     end
+    lib.hideTextUI()
 end
 
 function AllowRespawn()

@@ -161,7 +161,8 @@ local function lockpickCallback(vehicle, isAdvancedLockedpick, isSuccess)
     if isSuccess then
         lockpickSuccessCallback(vehicle)
     else -- if player fails quickevent
-        SendPoliceAlertAttempt('carjack', vehicle)
+        -- Báo cảnh sát khi bẻ khóa thất bại
+        config.alertPolice('carjack', vehicle)
         SetVehicleAlarm(vehicle, false)
         SetVehicleAlarmTimeLeft(vehicle, config.vehicleAlarmDuration)
         TriggerServerEvent('hud:server:GainStress', math.random(1, 4))
@@ -230,10 +231,12 @@ end
 ---@param isAdvancedLockedpick boolean Determines whether an advanced lockpick was used.
 ---@param isSuccess boolean? Determines whether the lock has been successfully opened.
 local function hotwireCallback(vehicle, isAdvancedLockedpick, isSuccess)
+    -- Báo cảnh sát 100% ngay khi thực hiện (bất kể thành công hay thất bại)
+    config.alertPolice('carjack', vehicle)
+
     if isSuccess then
         hotwireSuccessCallback(vehicle)
     else -- if player fails quickevent
-        SendPoliceAlertAttempt('carjack', vehicle)
         TriggerServerEvent('hud:server:GainStress', math.random(1, 4))
         exports.qbx_core:Notify(locale('notify.failed_lockedpick'), 'error')
     end

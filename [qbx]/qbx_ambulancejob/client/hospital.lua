@@ -125,7 +125,32 @@ local function checkIn(hospitalName)
 end
 
 RegisterNetEvent('qbx_ambulancejob:client:checkedIn', function(hospitalName, bedIndex)
-    putPlayerInBed(hospitalName, bedIndex, true, true)
+    local dropCoords
+    if hospitalName == 'pillbox' then
+        dropCoords = vec3(298.62, -599.66, 43.29) -- Main door Pillbox
+    elseif hospitalName == 'paleto' then
+        dropCoords = vec3(-250.0, 6315.0, 32.0) -- Main door Paleto
+    else
+        local hospital = sharedConfig.locations.hospitals[hospitalName]
+        if hospital then
+            dropCoords = hospital.coords
+        end
+    end
+    
+    if not dropCoords then
+        dropCoords = vec3(298.62, -599.66, 43.29) -- Backup
+    end
+    
+    DoScreenFadeOut(500)
+    Wait(1000)
+    
+    TriggerEvent('qbx_medical:client:playerRevived')
+    Wait(200) -- Phải đợi engine FiveM load xong trạng thái hồi sinh
+    SetEntityCoords(cache.ped, dropCoords.x, dropCoords.y, dropCoords.z, false, false, false, false)
+    
+    Wait(500)
+    DoScreenFadeIn(500)
+    exports.qbx_core:Notify(locale('success.being_helped'), 'success')
 end)
 
 ---Set up check-in and getting into beds using either target or zones

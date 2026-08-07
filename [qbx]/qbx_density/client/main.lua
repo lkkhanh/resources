@@ -11,7 +11,6 @@ SetRelationshipBetweenGroups(1, `GANG_9`, `PLAYER`)
 SetRelationshipBetweenGroups(1, `GANG_10`, `PLAYER`)
 SetRelationshipBetweenGroups(1, `FIREMAN`, `PLAYER`)
 SetRelationshipBetweenGroups(1, `MEDIC`, `PLAYER`)
-SetRelationshipBetweenGroups(1, `COP`, `PLAYER`)
 SetRelationshipBetweenGroups(1, `PRISONER`, `PLAYER`)
 
 local density = lib.load('config.client')
