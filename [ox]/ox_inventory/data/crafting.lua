@@ -5,11 +5,21 @@ return {
 			{
 				name = 'lockpick',
 				ingredients = {
-					scrapmetal = 5,
+					metalscrap = 5,
 					WEAPON_HAMMER = 0.05
 				},
 				duration = 5000,
 				count = 2,
+			},
+			{
+				name = 'repairkit',
+				ingredients = {
+					metalscrap = 10,
+					plastic = 10,
+					rubber = 5
+				},
+				duration = 5000,
+				count = 1,
 			},
 		},
 		points = {
