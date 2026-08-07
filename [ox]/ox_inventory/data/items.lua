@@ -442,41 +442,49 @@ return {
     ['steel'] = {
         label = 'Thép',
         weight = 100,
+        description = 'Có thể tìm thấy khi rã xe ở Bãi phế liệu hoặc đi Trộm nhà.',
     },
 
     ['rubber'] = {
         label = 'Cao su',
         weight = 100,
+        description = 'Có thể nhặt được ở Bãi phế liệu hoặc khi làm nghề Gom rác.',
     },
 
     ['metalscrap'] = {
         label = 'Phế liệu kim loại',
         weight = 100,
+        description = 'Thu thập từ Bãi phế liệu, nghề Thợ máy hoặc đi Gom rác.',
     },
 
     ['iron'] = {
         label = 'Sắt',
         weight = 100,
+        description = 'Rất dễ nhặt được khi đi Trộm nhà, Bãi phế liệu hoặc Tái chế rác.',
     },
 
     ['copper'] = {
         label = 'Đồng',
         weight = 100,
+        description = 'Thường rơi ra khi Trộm nhà hoặc phân loại Rác tái chế.',
     },
 
     ['aluminum'] = {
         label = 'Nhôm',
         weight = 100,
+        description = 'Kiếm được khi Trộm nhà hoặc Tái chế rác.',
     },
 
     ['plastic'] = {
         label = 'Nhựa',
         weight = 100,
+        description = 'Dễ dàng nhặt được khi làm nghề Gom rác, Tái chế hoặc Thợ máy.',
     },
 
     ['glass'] = {
         label = 'Thủy tinh',
         weight = 100,
+        description = 'Nhặt được khi Trộm nhà hoặc Tái chế rác.',
     },
 
     ['gatecrack'] = {
