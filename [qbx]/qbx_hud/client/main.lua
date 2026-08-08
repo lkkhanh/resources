@@ -769,6 +769,8 @@ end)
 -- Money HUD
 
 RegisterNetEvent('hud:client:ShowAccounts', function(type, amount)
+    -- Tắt HUD tiền cũ vì đã dùng qbx_infohud
+    --[[
     if type == 'cash' then
         SendNUIMessage({
             action = 'show',
@@ -782,11 +784,14 @@ RegisterNetEvent('hud:client:ShowAccounts', function(type, amount)
             bank = amount
         })
     end
+    ]]
 end)
 
 RegisterNetEvent('hud:client:OnMoneyChange', function(type, amount, isMinus)
     cashAmount = QBX.PlayerData.money.cash
     bankAmount = QBX.PlayerData.money.bank
+    -- Tắt hiệu ứng HUD tiền cũ
+    --[[
     SendNUIMessage({
         action = 'updatemoney',
         cash = cashAmount,
@@ -795,6 +800,7 @@ RegisterNetEvent('hud:client:OnMoneyChange', function(type, amount, isMinus)
         minus = isMinus,
         type = type
     })
+    ]]
 end)
 
 -- Stress Gain

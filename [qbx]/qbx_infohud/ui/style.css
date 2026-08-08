@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    overflow: hidden;
+    user-select: none;
+}
+
+.hud-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.hud-row {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: 800; /* Tăng độ dày chữ */
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8); /* Tăng bóng để chữ nổi bật trên nền trong suốt */
+    border-radius: 12px;
+    min-width: 80px;
+    justify-content: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+/* specific colors based on image reference */
+.pill.online {
+    background: linear-gradient(135deg, rgba(32, 140, 52, 0.25), rgba(32, 140, 52, 0.05));
+    border: 1px solid rgba(100, 255, 100, 0.25);
+    color: #4ade80; /* Màu xanh lá nổi bật */
+}
+
+.pill.playerid {
+    background: linear-gradient(135deg, rgba(140, 50, 160, 0.25), rgba(140, 50, 160, 0.05));
+    border: 1px solid rgba(255, 100, 255, 0.25);
+    color: #f472b6; /* Màu tím/hồng đậm */
+}
+
+.pill.location {
+    background: linear-gradient(135deg, rgba(20, 90, 180, 0.25), rgba(20, 90, 180, 0.05));
+    border: 1px solid rgba(100, 200, 255, 0.25);
+    color: #60a5fa; /* Màu xanh dương nhạt */
+}
+
+.pill.cash {
+    background: linear-gradient(135deg, rgba(10, 140, 120, 0.25), rgba(10, 140, 120, 0.05));
+    border: 1px solid rgba(100, 255, 255, 0.25);
+    color: #22d3ee; /* Màu ngọc lam */
+}
+
+.pill.bank {
+    background: linear-gradient(135deg, rgba(20, 110, 60, 0.25), rgba(20, 110, 60, 0.05));
+    border: 1px solid rgba(100, 255, 150, 0.25);
+    color: #34d399; /* Màu xanh lá đậm */
+}
+
+.pill i {
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+/* Money Update Animations */
+.money-update {
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    font-size: 15px;
+    font-weight: 900;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 0px 1px 4px rgba(0,0,0,0.9);
+}
+
+.money-update.plus {
+    color: #4ade80;
+    animation: floatUpPlus 2.5s forwards ease-out;
+}
+
+.money-update.minus {
+    color: #f87171;
+    animation: floatUpMinus 2.5s forwards ease-out;
+}
+
+@keyframes floatUpPlus {
+    0% { transform: translateY(-5px); opacity: 0; }
+    15% { transform: translateY(-15px); opacity: 1; }
+    80% { transform: translateY(-25px); opacity: 1; }
+    100% { transform: translateY(-35px); opacity: 0; }
+}
+
+@keyframes floatUpMinus {
+    0% { transform: translateY(-5px); opacity: 0; }
+    15% { transform: translateY(-15px); opacity: 1; }
+    80% { transform: translateY(-25px); opacity: 1; }
+    100% { transform: translateY(-35px); opacity: 0; }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qbox Info HUD</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="hud-container">
+            <div class="hud-row">
+                <div class="pill online">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="players">1</span>
+                </div>
+                <div class="pill playerid">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="id">#0</span>
+                </div>
+                <div class="pill location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="street">Loading...</span>
+                </div>
+            </div>
+            <div class="hud-row bottom-row">
+                <div class="pill cash" id="cash-container">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span id="cash">0$</span>
+                    <div id="cash-update" class="money-update"></div>
+                </div>
+                <div class="pill bank" id="bank-container">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span id="bank">0$</span>
+                    <div id="bank-update" class="money-update"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
