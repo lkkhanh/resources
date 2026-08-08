@@ -96,7 +96,7 @@ local function addGaragePoint()
                 end
                 isAddingGarage = false
             else
-                lib.notify({type = 'error', title = 'Error', description = 'Invalid garage location.'})
+                exports.qbx_core:Notify('Error', 'error', 5000, 'Invalid garage location.')
             end
         end
 

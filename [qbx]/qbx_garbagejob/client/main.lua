@@ -342,6 +342,12 @@ local function runWorkLoop()
 end
 
 local function CreateZone(x, y, z)
+    local marker = lib.marker.new({
+        coords = vec3(x, y, z + 1.0),
+        type = 2, width = 0.3, height = 0.3,
+        color = {r = 255, g = 165, b = 0, a = 200},
+        bobUpAndDown = true, faceCamera = true
+    })
     pZone = lib.zones.sphere({
         coords = vec3(x, y, z),
         radius = 15,
@@ -351,6 +357,7 @@ local function CreateZone(x, y, z)
         end,
         inside = function()
             if not config.useTarget then
+                marker:draw()
                 runWorkLoop()
             end
         end,
@@ -434,12 +441,19 @@ local function spawnPeds()
                 }
             })
         else
+            local marker = lib.marker.new({
+                coords = vec3(current.coords.x, current.coords.y, current.coords.z + 1.0),
+                type = 2, width = 0.3, height = 0.3,
+                color = {r = 255, g = 165, b = 0, a = 200},
+                bobUpAndDown = true, faceCamera = true
+            })
             lib.zones.box({
                 coords = vec3(current.coords.x, current.coords.y, current.coords.z+0.5),
                 size = vec3(3.0, 3.0, 2.0),
                 rotation = current.coords.w,
                 debug = config.debugPoly,
                 inside = function()
+                    marker:draw()
                     if IsControlJustPressed(0, 38) then
                         garbageMenu()
                     end
@@ -490,7 +504,7 @@ AddEventHandler('qb-garbagejob:client:RequestRoute', function()
                     end, 'Failed to spawn truck', 3000)
 
                     if veh == 0 then
-                        lib.notify({ description = 'Failed to spawn truck', type = 'error' })
+                        exports.qbx_core:Notify('Failed to spawn truck', 'error', 5000)
                         return
                     end
 

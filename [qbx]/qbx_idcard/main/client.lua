@@ -53,7 +53,7 @@ RegisterNetEvent('um-idcard:client:startAnim', function(cardType)
 end)
 
 RegisterNetEvent('um-idcard:client:notifyOx', function(data)
-    lib.notify({title = data.title, description = data.desc, icon = data.icon, iconColor = data.iconColor})
+    exports.qbx_core:Notify(data.title, 'inform', 5000, data.desc, nil, nil, data.icon, data.iconColor)
 end)
 
 -- Client Callback Register

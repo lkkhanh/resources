@@ -64,17 +64,9 @@ TravelTo = function(destinationId)
         SetEntityHeading(ped, dest.heading)
         Wait(1000)
         DoScreenFadeIn(1000)
-        lib.notify({
-            title = 'Thành Công',
-            description = 'Bạn đã đến ' .. dest.label,
-            type = 'success'
-        })
+        exports.qbx_core:Notify('Thành Công', 'success', 5000, 'Bạn đã đến ' .. dest.label)
     else
-        lib.notify({
-            title = 'Thất Bại',
-            description = 'Bạn không đủ $' .. Config.TicketPrice .. ' (Tiền mặt hoặc Ngân hàng) để mua vé xe buýt!',
-            type = 'error'
-        })
+        exports.qbx_core:Notify('Thất Bại', 'error', 5000, 'Bạn không đủ $' .. Config.TicketPrice .. ' (Tiền mặt hoặc Ngân hàng) để mua vé xe buýt!')
     end
 end
 

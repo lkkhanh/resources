@@ -10,28 +10,12 @@ RegisterNetEvent('qb-tow:server:DoBail', function(bool, vehInfo)
         if not Bail[Player.PlayerData.citizenid] then return end
         Player.Functions.AddMoney('bank', Bail[Player.PlayerData.citizenid], "tow-bail-paid")
         Bail[Player.PlayerData.citizenid] = nil
-        TriggerClientEvent('ox_lib:notify', source, {
-          id = 'bail_pay',
-          title = 'Job Payment',
-          description = locale("success.refund_to_cash", config.bailPrice),
-          showDuration = true,
-          position = 'center-right',
-          icon = 'check',
-          iconColor = '#49c530'
-        })
+        exports.qbx_core:Notify(source, 'Job Payment', 'success', 5000, locale("success.refund_to_cash", config.bailPrice), nil, nil, 'check', '#49c530')
         return
     end
 
     if Player.PlayerData.money.cash < config.bailPrice or Player.PlayerData.money.bank < config.bailPrice then
-        TriggerClientEvent('ox_lib:notify', source, {
-          id = 'tow_pay',
-          title = 'Job Payment',
-          description = locale("error.no_deposit", config.bailPrice),
-          showDuration = true,
-          position = 'center-right',
-          icon = 'ban',
-          iconColor = '#C53030'
-        })
+        exports.qbx_core:Notify(source, 'Job Payment', 'error', 5000, locale("error.no_deposit", config.bailPrice), nil, nil, 'ban', '#C53030')
         return
     end
 
@@ -43,15 +27,7 @@ RegisterNetEvent('qb-tow:server:DoBail', function(bool, vehInfo)
 
     Bail[Player.PlayerData.citizenid] = config.bailPrice
     Player.Functions.RemoveMoney(paymentMethod, config.bailPrice, "tow-paid-bail")
-    TriggerClientEvent('ox_lib:notify', source, {
-      id = 'bail_pay',
-      title = 'Job Payment',
-      description = locale("success.paid_with_" .. paymentMethod, config.bailPrice),
-      showDuration = true,
-      position = 'center-right',
-      icon = 'check',
-      iconColor = '#49c530'
-    })
+    exports.qbx_core:Notify(source, 'Job Payment', 'success', 5000, locale("success.paid_with_" .. paymentMethod, config.bailPrice), nil, nil, 'check', '#49c530')
     TriggerClientEvent('qb-tow:client:SpawnVehicle', source, vehInfo)
 end)
 
@@ -78,15 +54,7 @@ RegisterNetEvent('qb-tow:server:11101110', function(drops)
 
     Player.Functions.AddJobReputation(1)
     Player.Functions.AddMoney("bank", payment, "tow-salary")
-    TriggerClientEvent('ox_lib:notify', source, {
-      id = 'tow_pay',
-      title = 'Job Payment',
-      description = locale("success.you_earned", payment),
-      showDuration = true,
-      position = 'center-right',
-      icon = 'check',
-      iconColor = '#49c530'
-    })
+    exports.qbx_core:Notify(source, 'Job Payment', 'success', 5000, locale("success.you_earned", payment), nil, nil, 'check', '#49c530')
 end)
 
 lib.addCommand('npc', {

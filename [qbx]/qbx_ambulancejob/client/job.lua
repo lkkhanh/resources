@@ -245,6 +245,12 @@ end
 ---@param vehicles AuthorizedVehicles
 ---@param coords vector4
 local function createGarage(vehicles, coords)
+    local marker = lib.marker.new({
+        coords = vec3(coords.x, coords.y, coords.z + 0.3),
+        type = 2, width = 0.3, height = 0.3,
+        color = {r = 255, g = 165, b = 0, a = 200},
+        bobUpAndDown = true, faceCamera = true
+    })
     lib.zones.box({
         coords = coords.xyz,
         size = vec3(5, 5, 2),
@@ -260,11 +266,14 @@ local function createGarage(vehicles, coords)
             if text == locale('text.veh_button') then lib.hideTextUI() end
         end,
         inside = function()
-            if QBX.PlayerData.job.type == 'ems' and QBX.PlayerData.job.onduty and IsControlJustPressed(0, 38) then
-                if cache.vehicle then
-                    DeleteEntity(cache.vehicle)
-            else
-                showGarageMenu(vehicles, coords)
+            if QBX.PlayerData.job.type == 'ems' and QBX.PlayerData.job.onduty then
+                marker:draw()
+                if IsControlJustPressed(0, 38) then
+                    if cache.vehicle then
+                        DeleteEntity(cache.vehicle)
+                    else
+                        showGarageMenu(vehicles, coords)
+                    end
                 end
             end
         end,

@@ -221,6 +221,12 @@ else
     CreateThread(function()
         for hospitalName, hospital in pairs(sharedConfig.locations.hospitals) do
             if hospital.checkIn then
+                local marker = lib.marker.new({
+                    coords = vec3(hospital.checkIn.x, hospital.checkIn.y, hospital.checkIn.z + 0.3),
+                    type = 2, width = 0.3, height = 0.3,
+                    color = {r = 255, g = 165, b = 0, a = 200},
+                    bobUpAndDown = true, faceCamera = true
+                })
                 lib.zones.box({
                     coords = hospital.checkIn,
                     size = vec3(2, 1, 2),
@@ -238,6 +244,7 @@ else
                         lib.hideTextUI()
                     end,
                     inside = function()
+                        marker:draw()
                         if IsControlJustPressed(0, 38) then
                             checkIn(hospitalName)
                         end
@@ -247,6 +254,12 @@ else
 
             for i = 1, #hospital.beds do
                 local bed = hospital.beds[i]
+                local bedMarker = lib.marker.new({
+                    coords = vec3(bed.coords.x, bed.coords.y, bed.coords.z + 0.3),
+                    type = 2, width = 0.3, height = 0.3,
+                    color = {r = 255, g = 165, b = 0, a = 200},
+                    bobUpAndDown = true, faceCamera = true
+                })
                 lib.zones.box({
                     coords = bed.coords.xyz,
                     size = vec3(1.9, 2.1, 2),
@@ -261,6 +274,7 @@ else
                         lib.hideTextUI()
                     end,
                     inside = function()
+                        if not IsInHospitalBed then bedMarker:draw() end
                         if IsControlJustPressed(0, 38) then
                             lib.hideTextUI()
                             putPlayerInBed(hospitalName, i, false)

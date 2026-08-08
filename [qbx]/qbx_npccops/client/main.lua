@@ -103,11 +103,7 @@ CreateThread(function()
                         SetPoliceRadarBlips(false)
                         isWanted = false
                         LocalPlayer.state:set('isWantedByNPC', false, true)
-                        lib.notify({
-                            title = 'Sống sót thành công',
-                            description = 'Bạn đã sống sót qua đợt truy nã gắt gao!',
-                            type = 'success'
-                        })
+                        exports.qbx_core:Notify('Sống sót thành công', 'success', 5000, 'Bạn đã sống sót qua đợt truy nã gắt gao!')
                         
                         CreateThread(function()
                             SetPoliceIgnorePlayer(playerId, true)
@@ -140,11 +136,7 @@ CreateThread(function()
                             SetPoliceRadarBlips(false)
                             isWanted = false
                             LocalPlayer.state:set('isWantedByNPC', false, true)
-                            lib.notify({
-                                title = 'Thoát khỏi truy nã',
-                                description = 'Bạn đã cắt đuôi được cảnh sát!',
-                                type = 'success'
-                            })
+                            exports.qbx_core:Notify('Thoát khỏi truy nã', 'success', 5000, 'Bạn đã cắt đuôi được cảnh sát!')
                             
                             -- Ngăn chặn cảnh sát xung quanh lập tức gán lại sao (bằng cách phớt lờ người chơi trong 5s)
                             CreateThread(function()

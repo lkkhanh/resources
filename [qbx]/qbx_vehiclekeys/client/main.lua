@@ -98,9 +98,9 @@ end)
 
 local togglelocksBind
 togglelocksBind = lib.addKeybind({
-    name = 'togglelocks',
+    name = 'qbx_toggle_veh_lock_j',
     description = locale('info.toggle_locks'),
-    defaultKey = 'L',
+    defaultKey = 'J',
     onPressed = function()
         togglelocksBind:disable(true)
         local vehicle = lib.getClosestVehicle(GetEntityCoords(cache.ped), config.vehicleMaximumLockingDistance, true)

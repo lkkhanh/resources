@@ -416,7 +416,15 @@ local function setupGarageZone()
             lib.hideTextUI()
         end
 
+        local marker = lib.marker.new({
+            coords = vec3(config.locations.garage.coords.x, config.locations.garage.coords.y, config.locations.garage.coords.z + 0.3),
+            type = 2, width = 0.3, height = 0.3,
+            color = {r = 255, g = 165, b = 0, a = 200},
+            bobUpAndDown = true, faceCamera = true
+        })
+
         local function inside()
+            marker:draw()
             if IsControlJustPressed(0, 38) then
                 lib.hideTextUI()
                 taxiGarage()
@@ -444,13 +452,20 @@ local function destroyGarageZone()
 end
 
 function setupTaxiParkingZone()
-        taxiParkingZone = lib.zones.box({
+    local marker = lib.marker.new({
+        coords = vec3(config.locations.main.coords.x, config.locations.main.coords.y, config.locations.main.coords.z + 0.3),
+        type = 2, width = 0.3, height = 0.3,
+        color = {r = 255, g = 165, b = 0, a = 200},
+        bobUpAndDown = true, faceCamera = true
+    })
+    taxiParkingZone = lib.zones.box({
         coords = vec3(config.locations.main.coords.x, config.locations.main.coords.y, config.locations.main.coords.z),
         size = vec3(4.0, 4.0, 4.0),
         rotation = 55,
         debug = config.debugPoly,
         inside = function()
             if QBX.PlayerData.job.name ~= 'taxi' then return end
+            marker:draw()
             if IsControlJustPressed(0, 38) then
                 if whitelistedVehicle() then
                     if meterIsOpen then

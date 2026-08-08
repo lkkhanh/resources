@@ -82,6 +82,12 @@ local function registerDutyTarget()
 
         config.targets[dutyTargetBoxId] = {created = true}
     else
+        local marker = lib.marker.new({
+            coords = vec3(coords.x, coords.y, coords.z + 0.3),
+            type = 2, width = 0.3, height = 0.3,
+            color = {r = 255, g = 165, b = 0, a = 200},
+            bobUpAndDown = true, faceCamera = true
+        })
         local zone = lib.zones.box({
             coords = coords,
             size = vec3(1.5, 2, 2),
@@ -89,6 +95,7 @@ local function registerDutyTarget()
             debug = config.debugPoly,
             inside = function()
                 if QBX.PlayerData.job.onduty then
+                    marker:draw()
                     if IsControlJustPressed(0, 38) then
                         TriggerServerEvent("QBCore:ToggleDuty")
                         Wait(500)
@@ -141,6 +148,12 @@ local function registerStashTarget()
 
         config.targets[stashTargetBoxId] = {created = true}
     else
+        local marker = lib.marker.new({
+            coords = vec3(coords.x, coords.y, coords.z + 0.3),
+            type = 2, width = 0.3, height = 0.3,
+            color = {r = 255, g = 165, b = 0, a = 200},
+            bobUpAndDown = true, faceCamera = true
+        })
         local zone = lib.zones.box({
             coords = coords,
             size = vec3(1.5, 1.5, 2),
@@ -148,6 +161,7 @@ local function registerStashTarget()
             debug = config.debugPoly,
             inside = function()
                 if QBX.PlayerData.job.onduty and QBX.PlayerData.job.type == 'mechanic' then
+                    marker:draw()
                     if IsControlJustPressed(0, 38) then
                         TriggerEvent("qb-mechanicjob:client:target:OpenStash")
                         Wait(500)
@@ -172,6 +186,13 @@ local function registerGarageZone()
     local coords = sharedConfig.locations.vehicle
     local veh = cache.vehicle
 
+    local marker = lib.marker.new({
+        coords = vec3(coords.x, coords.y, coords.z + 0.3),
+        type = 2, width = 0.3, height = 0.3,
+        color = {r = 255, g = 165, b = 0, a = 200},
+        bobUpAndDown = true, faceCamera = true
+    })
+
     lib.zones.box({
         coords = coords.xyz,
         size = vec3(15, 5, 6),
@@ -179,6 +200,7 @@ local function registerGarageZone()
         debug = config.debugPoly,
         inside = function()
             if QBX.PlayerData.job.onduty and QBX.PlayerData.job.type == 'mechanic' then
+                marker:draw()
                 if IsControlJustPressed(0, 38) then
                     if veh then
                         DeleteVehicle(veh)
@@ -223,6 +245,13 @@ local function registerVehiclePlateZone(id, plate)
     local boxData = plate.boxData
     closestPlate = id
 
+    local marker = lib.marker.new({
+        coords = vec3(coords.x, coords.y, coords.z + 0.3),
+        type = 2, width = 0.3, height = 0.3,
+        color = {r = 255, g = 165, b = 0, a = 200},
+        bobUpAndDown = true, faceCamera = true
+    })
+
     local plateZone = lib.zones.box({
         coords = coords.xyz,
         size = vec3(boxData.width, boxData.length, 4),
@@ -230,6 +259,7 @@ local function registerVehiclePlateZone(id, plate)
         debug = boxData.debugPoly,
         inside = function()
             if QBX.PlayerData.job.onduty then
+                marker:draw()
                 local veh = cache.vehicle
                 if plate.AttachedVehicle then
                     if IsControlJustPressed(0, 38) then

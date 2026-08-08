@@ -221,9 +221,13 @@ local function checkInteractions()
             local sleep = 800
             local playerCoords = GetEntityCoords(cache.ped)
             for i = 1, #interactions do
-                if #(playerCoords - interactions[i].coords) < 1.5 and not IsDecorating then
+                local dist = #(playerCoords - interactions[i].coords)
+                if dist < 5.0 and not IsDecorating then
                     sleep = 0
-                    interactOptions[interactions[i].type](interactions[i].coords)
+                    DrawMarker(2, interactions[i].coords.x, interactions[i].coords.y, interactions[i].coords.z + 0.3, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.3, 0.3, 0.3, 255, 165, 0, 200, true, true, 2, false, nil, nil, false)
+                    if dist < 1.5 then
+                        interactOptions[interactions[i].type](interactions[i].coords)
+                    end
                 end
             end
             Wait(sleep)
@@ -430,11 +434,15 @@ CreateThread(function()
         local sleep = 800
         local playerCoords = GetEntityCoords(cache.ped)
         for i = 1, #properties do
-            if #(playerCoords - properties[i].xyz) < 1.6 then
+            local dist = #(playerCoords - properties[i].xyz)
+            if dist < 5.0 then
                 sleep = 0
-                qbx.drawText3d({ coords = properties[i].xyz, text = locale('drawtext.view_property') })
-                if IsControlJustPressed(0, 38) then
-                    PreparePropertyMenu(properties[i])
+                DrawMarker(2, properties[i].xyz.x, properties[i].xyz.y, properties[i].xyz.z + 0.3, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.3, 0.3, 0.3, 255, 165, 0, 200, true, true, 2, false, nil, nil, false)
+                if dist < 1.6 then
+                    qbx.drawText3d({ coords = properties[i].xyz, text = locale('drawtext.view_property') })
+                    if IsControlJustPressed(0, 38) then
+                        PreparePropertyMenu(properties[i])
+                    end
                 end
             end
         end
