@@ -384,9 +384,24 @@ local function openVehicleSellMenu(targetVehicle)
         options[#options + 1] = swapOption
     end
 
+    local IMAGE_LOCAL = 'nui://qbx_vehicleshop/html/images/%s/%s.png'
+    local category = (VEHICLES[vehicle] and VEHICLES[vehicle].category or 'unknown'):lower()
+    
+    local headerOption = {
+        title = ('Thông số xe: %s %s'):format(getVehBrand(targetVehicle):upper(), getVehName(targetVehicle):upper()),
+        description = ('💵 Giá bán: $%s\n(Sử dụng các tùy chọn bên dưới để giao dịch)'):format(getVehPrice(targetVehicle)),
+        image = IMAGE_LOCAL:format(category, vehicle:lower()),
+        metadata = {
+            {label = 'Hãng sản xuất', value = getVehBrand(targetVehicle):upper()},
+            {label = 'Phân khúc', value = category:upper()}
+        },
+        readOnly = true,
+    }
+    table.insert(options, 1, headerOption)
+
     lib.registerContext({
         id = 'vehicleMenu',
-        title = ('%s %s - $%s'):format(getVehBrand(targetVehicle):upper(), getVehName(targetVehicle):upper(), getVehPrice(targetVehicle)),
+        title = ('Cửa Hàng Xe'),
         options = options
     })
 

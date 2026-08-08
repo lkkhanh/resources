@@ -1,0 +1,3 @@
+-- Đặt ảnh xe vào đây
+-- Các ảnh phải định dạng .png và chia theo thư mục phân khúc
+-- Ví dụ: super/t20.png

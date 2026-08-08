@@ -29,7 +29,10 @@ files {
     'client/vehicles.lua',
     'config/client.lua',
     'config/shared.lua',
-    'locales/*.json'
+    'locales/*.json',
+    'html/images/**/*.png',
+    'html/images/**/*.jpg',
+    'html/images/**/*.webp'
 }
 
 lua54 'yes'
