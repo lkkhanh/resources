@@ -882,6 +882,9 @@ end
 
 CreateThread(function()
     while true do
+        -- TẮT TÍNH NĂNG STRESS THEO YÊU CẦU: Không làm mờ, không rung lắc, không ngất xỉu
+        -- Đoạn code dưới đây đã bị vô hiệu hóa
+        --[[
         local effectInterval = getEffectInterval(stress)
         if stress >= 100 then
             local blurIntensity = getBlurIntensity(stress)
@@ -913,6 +916,8 @@ CreateThread(function()
             TriggerScreenblurFadeOut(1000.0)
         end
         Wait(effectInterval)
+        ]]--
+        Wait(60000) -- Chờ 1 phút thay vì chạy liên tục
     end
 end)
 

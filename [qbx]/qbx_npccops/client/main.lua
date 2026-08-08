@@ -2,6 +2,8 @@ local isWanted = false
 local wantedTimer = 0
 local wantedTimerType = 'evasion'
 local wantedDefaultTimer = 120
+local currentStars = 0
+local lastKnownCoords = nil
 
 local function IsPlayerVisibleToCops(playerPed)
     local peds = GetGamePool('CPed')
@@ -53,6 +55,8 @@ CreateThread(function()
                 if wantedTimer <= 0 then
                     wantedTimer = wantedDefaultTimer
                 end
+                currentStars = currentWantedLevel
+                lastKnownCoords = GetEntityCoords(PlayerPedId())
                 LocalPlayer.state:set('isWantedByNPC', true, true)
             end
             
@@ -65,6 +69,14 @@ CreateThread(function()
         end
 
         if isWanted then
+            if currentWantedLevel == 0 and wantedTimer > 0 then
+                SetPlayerWantedLevel(playerId, currentStars, false)
+                SetPlayerWantedLevelNow(playerId, false)
+                if lastKnownCoords then
+                    SetPlayerWantedCentrePosition(playerId, lastKnownCoords.x, lastKnownCoords.y, lastKnownCoords.z)
+                end
+            end
+
             if IsPedBeingArrested(PlayerPedId()) then
                 -- Nếu bị bắt sống
                 ClearPlayerWantedLevel(playerId)
@@ -107,6 +119,7 @@ CreateThread(function()
                     -- Vẫn cập nhật tâm tìm kiếm để cảnh sát bám theo nếu nhìn thấy
                     if IsPlayerVisibleToCops(ped) then
                         local coords = GetEntityCoords(ped)
+                        lastKnownCoords = coords
                         SetPlayerWantedCentrePosition(playerId, coords.x, coords.y, coords.z)
                     end
                 else
@@ -114,6 +127,7 @@ CreateThread(function()
                     if IsPlayerVisibleToCops(ped) then
                         wantedTimer = wantedDefaultTimer -- Reset lại thời gian lẩn trốn
                         local coords = GetEntityCoords(ped)
+                        lastKnownCoords = coords
                         -- Báo vị trí cho cảnh sát
                         SetPlayerWantedCentrePosition(playerId, coords.x, coords.y, coords.z)
                     else
@@ -171,7 +185,8 @@ RegisterNetEvent('qbx_npccops:client:setWanted', function(stars, timerType, dura
     local playerId = PlayerId()
     local current = GetPlayerWantedLevel(playerId)
     
-    if stars > current then
+    if stars >= current then
+        currentStars = stars
         SetPlayerWantedLevel(playerId, stars, false)
         SetPlayerWantedLevelNow(playerId, false)
         SetDispatchCopsForPlayer(playerId, true)
@@ -199,14 +214,22 @@ RegisterNetEvent('qbx_npccops:client:penaltyTeleport', function()
     isWanted = false
     LocalPlayer.state:set('isWantedByNPC', false, true)
     
+    -- Nếu đang chết thì hồi sinh (dùng qbx_medical) TRƯỚC KHI teleport để tránh lỗi mất skin/kẹt animation
+    if IsEntityDead(ped) or LocalPlayer.state.isDead then
+        TriggerEvent('qbx_medical:client:playerRevived')
+        Wait(500)
+    end
+    
+    -- Phục hồi lại skin/quần áo nếu bị game gốc làm lỗi thành ped trọc đầu
+    TriggerEvent('illenium-appearance:client:reloadSkin', true)
+    Wait(500)
+    
+    -- Lấy lại ped sau khi revive (phòng hờ ped bị đổi)
+    ped = PlayerPedId()
+    
     -- Teleport ra trước đồn Mission Row
     SetEntityCoords(ped, 428.23, -984.28, 30.71, false, false, false, false)
     SetEntityHeading(ped, 90.0)
-    
-    -- Nếu đang chết thì hồi sinh (dùng qbx_medical)
-    if IsEntityDead(ped) or LocalPlayer.state.isDead then
-        TriggerEvent('qbx_medical:client:playerRevived')
-    end
     
     Wait(1000)
     DoScreenFadeIn(500)

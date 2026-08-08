@@ -121,6 +121,8 @@ RegisterNetEvent('qbx_npccops:server:executePenaltyBusted', function()
     exports.ox_inventory:AddItem(src, 'water', 1)
     exports.ox_inventory:AddItem(src, 'burger', 1)
 
-    -- KHÔNG trigger penaltyTeleport vì game gốc sẽ tự động teleport khi bị busted
+    -- Gọi client xóa sao và tele (để sửa lỗi native busted làm hỏng ped)
+    TriggerClientEvent('qbx_npccops:client:penaltyTeleport', src)
+
     exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát bắt giữ và tịch thu tài sản!', 'error', 10000)
 end)
