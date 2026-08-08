@@ -306,6 +306,28 @@ local function sellVehicle(vehModel)
     TriggerServerEvent('qbx_vehicleshop:server:sellShowroomVehicle', vehModel, playerId)
 end
 
+local TRUNK_CAPACITY = {
+    [0] = 168, [1] = 328, [2] = 408, [3] = 248, [4] = 328,
+    [5] = 248, [6] = 248, [7] = 168, [8] = 40,  [9] = 408,
+    [10] = 408, [11] = 328, [12] = 488, [13] = 40, [14] = 248,
+    [15] = 408, [16] = 408, [17] = 328, [18] = 328, [19] = 328, [20] = 488, [21] = 328, [22] = 328
+}
+
+local function getVehicleStats(model)
+    local hash = type(model) == 'string' and joaat(model) or model
+    
+    local speedData = GetVehicleModelEstimatedMaxSpeed(hash)
+    local speed = (speedData and speedData > 0.0) and math.floor(speedData * 3.6) .. ' km/h' or 'Chưa có thông số'
+    
+    local seatsData = GetVehicleModelNumberOfSeats(hash)
+    local seats = (seatsData and seatsData > 0) and seatsData or 'Chưa có thông số'
+    
+    local vClass = GetVehicleClassFromName(hash)
+    local trunk = (vClass and TRUNK_CAPACITY[vClass]) and TRUNK_CAPACITY[vClass] .. ' kg' or 'Chưa có thông số'
+    
+    return speed, seats, trunk
+end
+
 --- Opens the vehicle shop menu
 ---@param targetVehicle number
 local function openVehicleSellMenu(targetVehicle)
@@ -386,6 +408,7 @@ local function openVehicleSellMenu(targetVehicle)
 
     local IMAGE_LOCAL = 'nui://qbx_vehicleshop/html/images/%s/%s.png'
     local category = (VEHICLES[vehicle] and VEHICLES[vehicle].category or 'unknown'):lower()
+    local speed, seats, trunk = getVehicleStats(vehicle)
     
     local headerOption = {
         title = ('Thông số xe: %s %s'):format(getVehBrand(targetVehicle):upper(), getVehName(targetVehicle):upper()),
@@ -393,7 +416,10 @@ local function openVehicleSellMenu(targetVehicle)
         image = IMAGE_LOCAL:format(category, vehicle:lower()),
         metadata = {
             {label = 'Hãng sản xuất', value = getVehBrand(targetVehicle):upper()},
-            {label = 'Phân khúc', value = category:upper()}
+            {label = 'Phân khúc', value = category:upper()},
+            {label = '🏎️ Tốc độ tối đa', value = speed},
+            {label = '💺 Chỗ ngồi', value = seats},
+            {label = '📦 Cốp xe (Ước tính)', value = trunk}
         },
         readOnly = true,
     }
