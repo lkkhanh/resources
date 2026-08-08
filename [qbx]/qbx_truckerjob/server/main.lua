@@ -190,7 +190,7 @@ lib.callback.register('qbx_truckerjob:server:getNewTask', function(source, init)
         local randPositionIndex = math.random(#sharedConfig.locations.stores)
         locations[source] = { done = {}, current = randPositionIndex }
 
-        return randPositionIndex, math.random(config.drops.min, config.drops.max)
+        return randPositionIndex, math.random(config.drops.min, config.drops.max), 1, config.maxLocations
     end
 
     drops[citizenid] = (drops[citizenid] or 0) + 1
@@ -199,7 +199,7 @@ lib.callback.register('qbx_truckerjob:server:getNewTask', function(source, init)
     locations[source].done[#doneLocations + 1] = locations[source].current
     if #doneLocations == config.maxLocations then
         locations[source].current = nil
-        return 0, 0
+        return 0, 0, #doneLocations, config.maxLocations
     end
 
     -- giveReward(player)
@@ -224,5 +224,5 @@ lib.callback.register('qbx_truckerjob:server:getNewTask', function(source, init)
 
     locations[source].current = index
 
-    return index, math.random(config.drops.min, config.drops.max)
+    return index, math.random(config.drops.min, config.drops.max), #locations[source].done + 1, config.maxLocations
 end)

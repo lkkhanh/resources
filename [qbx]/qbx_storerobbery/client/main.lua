@@ -116,7 +116,6 @@ end)
 RegisterNUICallback('success', function(_, cb)
     startLockpick(false)
     openingRegisterHandler(config.openRegisterTime)
-    alertPolice()
     if lib.progressBar({
         duration = config.openRegisterTime,
         label = locale('text.emptying_the_register'),
@@ -130,6 +129,7 @@ RegisterNUICallback('success', function(_, cb)
         }
     }) then -- if completed
         openingRegister = false
+        alertPolice()
         TriggerServerEvent('qbx_storerobbery:server:registerOpened', true)
     else -- if canceled
         openingRegister = false

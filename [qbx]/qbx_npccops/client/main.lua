@@ -211,11 +211,15 @@ RegisterNetEvent('qbx_npccops:client:penaltyTeleport', function()
     Wait(1000)
     -- Xóa sao an toàn
     ClearPlayerWantedLevel(PlayerId())
+    SetPlayerWantedLevel(PlayerId(), 0, false)
+    SetPlayerWantedLevelNow(PlayerId(), false)
+    SetPoliceIgnorePlayer(PlayerId(), true)
+    SetDispatchCopsForPlayer(PlayerId(), false)
     isWanted = false
     LocalPlayer.state:set('isWantedByNPC', false, true)
     
-    -- Nếu đang chết thì hồi sinh (dùng qbx_medical) TRƯỚC KHI teleport để tránh lỗi mất skin/kẹt animation
-    if IsEntityDead(ped) or LocalPlayer.state.isDead then
+    -- Nếu đang chết hoặc hấp hối thì hồi sinh (dùng qbx_medical) TRƯỚC KHI teleport để tránh lỗi mất skin/kẹt animation
+    if IsEntityDead(ped) or LocalPlayer.state.isDead or LocalPlayer.state.isLaststand then
         TriggerEvent('qbx_medical:client:playerRevived')
         Wait(500)
     end
@@ -232,5 +236,13 @@ RegisterNetEvent('qbx_npccops:client:penaltyTeleport', function()
     SetEntityHeading(ped, 90.0)
     
     Wait(1000)
+    
+    -- Xóa sao thêm lần nữa sau khi teleport (phòng hờ game tự set lại do xuất hiện gần cảnh sát)
+    ClearPlayerWantedLevel(PlayerId())
+    SetPlayerWantedLevel(PlayerId(), 0, false)
+    SetPlayerWantedLevelNow(PlayerId(), false)
+    SetPoliceIgnorePlayer(PlayerId(), false)
+    isWanted = false
+    
     DoScreenFadeIn(500)
 end)

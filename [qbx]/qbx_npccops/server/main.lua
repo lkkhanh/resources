@@ -96,17 +96,31 @@ RegisterNetEvent('qbx_npccops:server:executePenalty', function(playerSource)
     local player = exports.qbx_core:GetPlayer(src)
     if not player then return end
 
-    -- Xóa hết đồ, giữ lại 3 món
-    exports.ox_inventory:ClearInventory(src, {'phone', 'id_card', 'driver_license'})
+    -- Xóa đồ phạm pháp/vũ khí, giữ lại tiền mặt và giấy tờ
+    exports.ox_inventory:ClearInventory(src, {'money', 'phone', 'id_card', 'driver_license'})
     
     -- Cho 1 chai nước, 1 bánh burger
     exports.ox_inventory:AddItem(src, 'water', 1)
     exports.ox_inventory:AddItem(src, 'burger', 1)
 
+    -- Phạt 500$ (Kiểm tra ngân hàng -> tiền mặt -> ghi nợ)
+    local fineAmount = 500
+    local bankBalance = player.PlayerData.money['bank'] or 0
+    local cashBalance = player.PlayerData.money['cash'] or 0
+
+    if bankBalance >= fineAmount then
+        player.Functions.RemoveMoney('bank', fineAmount, 'police-penalty')
+    elseif cashBalance >= fineAmount then
+        player.Functions.RemoveMoney('cash', fineAmount, 'police-penalty')
+    else
+        -- Cả 2 không đủ thì ghi nợ vào ngân hàng (trừ thẳng sẽ làm số dư âm)
+        player.Functions.RemoveMoney('bank', fineAmount, 'police-penalty')
+    end
+
     -- Gọi client xóa sao và tele
     TriggerClientEvent('qbx_npccops:client:penaltyTeleport', src)
 
-    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát tiêu diệt/bắt giữ và tịch thu tài sản!', 'error', 10000)
+    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát tiêu diệt và bị tịch thu tài sản, phạt $500!', 'error', 10000)
 end)
 
 RegisterNetEvent('qbx_npccops:server:executePenaltyBusted', function()
@@ -114,15 +128,29 @@ RegisterNetEvent('qbx_npccops:server:executePenaltyBusted', function()
     local player = exports.qbx_core:GetPlayer(src)
     if not player then return end
 
-    -- Xóa hết đồ, giữ lại 3 món
-    exports.ox_inventory:ClearInventory(src, {'phone', 'id_card', 'driver_license'})
+    -- Xóa đồ phạm pháp/vũ khí, giữ lại tiền mặt và giấy tờ
+    exports.ox_inventory:ClearInventory(src, {'money', 'phone', 'id_card', 'driver_license'})
     
     -- Cho 1 chai nước, 1 bánh burger
     exports.ox_inventory:AddItem(src, 'water', 1)
     exports.ox_inventory:AddItem(src, 'burger', 1)
 
+    -- Phạt 500$ (Kiểm tra ngân hàng -> tiền mặt -> ghi nợ)
+    local fineAmount = 500
+    local bankBalance = player.PlayerData.money['bank'] or 0
+    local cashBalance = player.PlayerData.money['cash'] or 0
+
+    if bankBalance >= fineAmount then
+        player.Functions.RemoveMoney('bank', fineAmount, 'police-penalty')
+    elseif cashBalance >= fineAmount then
+        player.Functions.RemoveMoney('cash', fineAmount, 'police-penalty')
+    else
+        -- Cả 2 không đủ thì ghi nợ vào ngân hàng (trừ thẳng sẽ làm số dư âm)
+        player.Functions.RemoveMoney('bank', fineAmount, 'police-penalty')
+    end
+
     -- Gọi client xóa sao và tele (để sửa lỗi native busted làm hỏng ped)
     TriggerClientEvent('qbx_npccops:client:penaltyTeleport', src)
 
-    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát bắt giữ và tịch thu tài sản!', 'error', 10000)
+    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát bắt giữ, tịch thu tài sản và phạt $500!', 'error', 10000)
 end)

@@ -4,6 +4,7 @@ local currentZones = {}
 local currentLocation = {}
 local currentBlip = 0
 local hasBox = false
+local isBusy = false
 local truckVehBlip = 0
 local truckerBlip = 0
 local returningToStation = false
@@ -359,26 +360,80 @@ local function getNewLocation(locationIndex, drop)
         onEnter = function()
             exports.qbx_core:Notify(locale('mission.store_reached'), 'info')
         end,
+        onExit = function()
+            local isOpen, currentText = lib.isTextUIOpen()
+            if isOpen and (currentText == '[E] - ' .. locale('mission.take_box') or currentText == '[E] - ' .. locale('mission.deliver_box')) then
+                lib.hideTextUI()
+            end
+        end,
         inside = function ()
             marker:draw()
 
-            if IsControlJustReleased(0, 38) then
-                if cache.vehicle then
-                    return exports.qbx_core:Notify(locale('error.get_out_vehicle'), 'error')
-                elseif not hasBox then
-                    getInTrunk()
-                elseif #(GetEntityCoords(cache.ped) - location.coords) < 5 then
-                    if deliver() then
-                        local newLocation, newDrop = lib.callback.await('qbx_truckerjob:server:getNewTask', false)
-                        if not newLocation or QBX.PlayerData.job.name ~= 'trucker' then return
-                        elseif newLocation == 0 then
-                            exports.qbx_core:Notify(locale('mission.return_to_station'), 'info')
-                            returnToStation()
-                        else
-                            exports.qbx_core:Notify(locale('mission.goto_next_point'), 'info')
-                            getNewLocation(newLocation, newDrop)
+            if isBusy then return end
+
+            local ped = cache.ped
+            local textUI = nil
+
+            if not hasBox then
+                if not cache.vehicle then
+                    local vehicle = GetVehiclePedIsIn(ped, true)
+                    if vehicle ~= 0 and isTruckerVehicle(vehicle) and currentPlate == qbx.getVehiclePlate(vehicle) and areBackDoorsOpen(vehicle) then
+                        local trunkCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0, -2.5, 0)
+                        if #(GetEntityCoords(ped, true) - trunkCoords) <= 1.5 then
+                            textUI = '[E] - ' .. locale('mission.take_box')
                         end
                     end
+                end
+            else
+                if #(GetEntityCoords(ped, true) - location.coords) < 5 then
+                    textUI = '[E] - ' .. locale('mission.deliver_box')
+                end
+            end
+
+            if textUI then
+                local isOpen, currentText = lib.isTextUIOpen()
+                if not isOpen or currentText ~= textUI then
+                    lib.showTextUI(textUI)
+                end
+            else
+                local isOpen, currentText = lib.isTextUIOpen()
+                if isOpen and (currentText == '[E] - ' .. locale('mission.take_box') or currentText == '[E] - ' .. locale('mission.deliver_box')) then
+                    lib.hideTextUI()
+                end
+            end
+
+            if IsControlJustReleased(0, 38) then
+                if cache.vehicle then
+                    exports.qbx_core:Notify(locale('error.get_out_vehicle'), 'error')
+                    return
+                end
+                
+                if not hasBox then
+                    lib.hideTextUI()
+                    isBusy = true
+                    CreateThread(function()
+                        getInTrunk()
+                        isBusy = false
+                    end)
+                elseif #(GetEntityCoords(cache.ped) - location.coords) < 5 then
+                    lib.hideTextUI()
+                    isBusy = true
+                    CreateThread(function()
+                        if deliver() then
+                            local newLocation, newDrop, currentProgress, maxProgress = lib.callback.await('qbx_truckerjob:server:getNewTask', false)
+                            if not newLocation or QBX.PlayerData.job.name ~= 'trucker' then 
+                                isBusy = false
+                                return
+                            elseif newLocation == 0 then
+                                exports.qbx_core:Notify(locale('mission.return_to_station'), 'info')
+                                returnToStation()
+                            else
+                                exports.qbx_core:Notify(locale('mission.goto_next_point') .. ' (' .. currentProgress .. '/' .. maxProgress .. ')', 'info')
+                                getNewLocation(newLocation, newDrop)
+                            end
+                        end
+                        isBusy = false
+                    end)
                 else
                     exports.qbx_core:Notify(locale('error.too_far_from_delivery'), 'error')
                 end
@@ -458,8 +513,9 @@ RegisterNetEvent('qbx_truckerjob:client:spawnVehicle', function(veh)
     local vehicle = NetToVeh(netId)
     SetVehicleEngineOn(vehicle, true, true, false)
 
-    local location, drop = lib.callback.await('qbx_truckerjob:server:getNewTask', false, true)
+    local location, drop, currentProgress, maxProgress = lib.callback.await('qbx_truckerjob:server:getNewTask', false, true)
 
     if not location then return end
+    exports.qbx_core:Notify('Bắt đầu giao hàng (' .. currentProgress .. '/' .. maxProgress .. ')', 'info')
     getNewLocation(location, drop)
 end)
