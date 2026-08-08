@@ -40,7 +40,6 @@ return {
             tow = 'Tow Truck',
             reporter = 'News Reporter',
             garbage = 'Garbage Collector',
-            bus = 'Bus Driver',
         },
     },
 }
