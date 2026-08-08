@@ -23,13 +23,27 @@ function Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyl
     local position = notifyPosition or positionConfig
 
     lib.notify({
-        id = title,
+        id = 'qbx_global_notify',
         title = title,
         description = description,
         duration = duration,
         type = notifyType,
         position = position,
-        style = notifyStyle,
+        style = notifyStyle or {
+            background = 'linear-gradient(135deg, rgba(20, 90, 180, 0.25), rgba(20, 90, 180, 0.05))',
+            border = '1px solid rgba(100, 200, 255, 0.25)',
+            color = '#60a5fa', 
+            borderRadius = '20px', -- Bo tròn viền
+            zoom = '1.7', -- Nhỏ đi khoảng 1/3
+            ['.title'] = {
+                color = '#60a5fa',
+                fontWeight = '900',
+            },
+            ['.description'] = {
+                color = '#60a5fa',
+                fontWeight = '900',
+            }
+        },
         icon = notifyIcon,
         iconColor = notifyIconColor
     })
