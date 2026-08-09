@@ -1,4 +1,11 @@
 return {
+	DivingShop = {
+		name = 'Cửa hàng Đồ lặn',
+		inventory = {
+			{ name = 'diving_tube', price = 200 },
+			{ name = 'diving_gear', price = 50 },
+		}
+	},
 	General = {
 		name = 'Shop',
 		blip = {

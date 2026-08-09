@@ -538,12 +538,12 @@ return {
         weight = 1000,
     },
 
-    ['diving_gear'] = {
+    ['diving_tube'] = {
         label = 'Đồ lặn',
         weight = 30000,
     },
 
-    ['diving_fill'] = {
+    ['diving_gear'] = {
         label = 'Bình lặn',
         weight = 3000,
     },

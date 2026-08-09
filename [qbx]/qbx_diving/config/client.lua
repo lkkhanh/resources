@@ -1,5 +1,5 @@
 return {
-    useTarget = false, -- Enables ox_target interactions
+    useTarget = true, -- Enables ox_target interactions
     debugPoly = false,
     sellLocations = {
         -- Only used when not using the target

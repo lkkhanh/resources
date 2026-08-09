@@ -91,7 +91,7 @@ return {
                 {coords = vec3(-2810.9072, -385.14368, -40.439156), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-2838.1724, -362.20242, -40.52066), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 10,
+            maxHarvestAmount = 5,
         },
         { -- Group 8 North Chumash Cove
             blip = vec3(-3222.98, 1936.27, -9.84),
@@ -127,7 +127,7 @@ return {
                 {coords = vec3(-3299.854, 3698.3813, -90.361176), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-3297.797, 3712.5295, -95.503784), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 7,
+            maxHarvestAmount = 4,
         },
         { -- Group 11 Zancudo off Shore North West
             blip = vec3(-3213.45, 3638.8, -33.59),
@@ -151,7 +151,7 @@ return {
                 {coords = vec3(-3154.8594, 3681.342, -42.315613), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-3131.9868, 3653.9766, -32.50827), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 14,
+            maxHarvestAmount = 5,
         },
         { -- Group 12 Paleto Cove South West
             blip = vec3(-1584.6449, 5243.642, -2.493256),
@@ -179,7 +179,7 @@ return {
                 {coords = vec3(-1075.5942, 6522.3057, -38.218628), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-1075.9788, 6539.911, -34.295044), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 12,
+            maxHarvestAmount = 4,
         },
         { -- Group 14 Paleto Off-Shore
             blip = vec3(-975.57, 6533.18, -23.45),
@@ -207,7 +207,7 @@ return {
                 {coords = vec3(-820.1462, 6389.9834, -3.537476), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-810.01263, 6390.9375, -6.947937), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 16,
+            maxHarvestAmount = 5,
         },
         { -- Group 15 Paleto Off-Shore
             blip = vec3(-844.66, 6737.09, -29.0),
@@ -222,7 +222,7 @@ return {
                 {coords = vec3(-769.8831, 6685.41, -19.18747), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-740.6302, 6698.827, -23.412079), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 6,
+            maxHarvestAmount = 3,
         },
         { -- Group 16 Paleto Off-Shore
             blip = vec3(-887.83, 6564.11, -22.67),
@@ -253,7 +253,7 @@ return {
                 {coords = vec3(-736.95465, 6520.8643, -2.858795), boxDimensions = vec4(3, 3, 5, 100.0)},
                 {coords = vec3(-754.82306, 6494.6104, -16.747314), boxDimensions = vec4(3, 3, 5, 100.0)},
             },
-            maxHarvestAmount = 9,
+            maxHarvestAmount = 4,
         },
     },
 }

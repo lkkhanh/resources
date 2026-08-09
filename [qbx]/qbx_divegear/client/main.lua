@@ -118,12 +118,21 @@ local function startOxygenLevelDecrementerThread()
         while currentGear.enabled do
             if IsPedSwimmingUnderWater(cache.ped) and oxygenLevel > 0 then
                 oxygenLevel -= config.decayRate
-                if oxygenLevel % 10 == 0 and oxygenLevel ~= config.startingOxygenLevel then
-                    -- Initiate breathing suit audio
+                
+                if oxygenLevel == 25 or oxygenLevel == 15 or oxygenLevel == 5 then
+                    exports.qbx_core:Notify('CẢNH BÁO: Oxy của bạn chỉ còn ' .. oxygenLevel .. '%!', 'error', 5000)
+                    PlaySoundFrontend(-1, "Beep_Red", "DLC_HEIST_HACKING_SNAKE_SOUNDS", true)
                 end
+
+                if oxygenLevel % 10 == 0 and oxygenLevel ~= config.startingOxygenLevel then
+                    pcall(function()
+                        PlaySoundFromEntity(-1, "BREATH", cache.ped, "Speech_Params_Force_Shouted_Critical", false, false)
+                    end)
+                end
+
                 if oxygenLevel == 0 then
                     disableScuba()
-                    -- Stop breathing suit audio
+                    exports.qbx_core:Notify('Bạn đã cạn kiệt Oxy!', 'error', 7000)
                 end
             end
             Wait(1000)

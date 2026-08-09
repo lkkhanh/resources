@@ -150,6 +150,60 @@ local function sellCoral()
     ClearPedTasksImmediately(cache.ped)
 end
 
+local function rentBoat()
+    local spawnCoords = vec4(-1663.0, -1053.0, 1.5, 230.0) -- Tọa độ dưới nước gần NPC Salton Sea
+    local closestVeh = lib.getClosestVehicle(spawnCoords.xyz, 5.0, false)
+    if closestVeh then
+        exports.qbx_core:Notify('Khu vực lấy thuyền đang bị chặn bởi phương tiện khác!', 'error')
+        return
+    end
+
+    if lib.progressBar({
+        duration = 3000,
+        label = 'Đang làm thủ tục thuê thuyền...',
+        useWhileDead = false,
+        canCancel = true,
+        anim = {
+            scenario = 'WORLD_HUMAN_CLIPBOARD'
+        }
+    }) then
+        lib.callback.await('qbx_diving:server:rentBoat', false, spawnCoords)
+    end
+end
+
+local function openDivingMenu()
+    lib.registerContext({
+        id = 'diving_service_menu',
+        title = 'Dịch Vụ Lặn Biển',
+        options = {
+            {
+                title = 'Cửa hàng Đồ lặn',
+                description = 'Mua mặt nạ lặn và bình oxy dưỡng khí (Như shop 24/7)',
+                icon = 'shopping-cart',
+                iconColor = '#4287f5',
+                onSelect = function()
+                    exports.ox_inventory:openInventory('shop', { type = 'DivingShop' })
+                end,
+            },
+            {
+                title = 'Thuê thuyền lặn (Dinghy)',
+                description = 'Giá: $500. Thuyền sẽ được đưa ra vùng nước an toàn gần nhất.',
+                icon = 'ship',
+                iconColor = '#f5b042',
+                onSelect = rentBoat,
+            },
+            {
+                title = 'Bán San Hô',
+                description = 'Thu mua các loại san hô bạn hái được với giá cực kỳ ưu đãi.',
+                icon = 'hand-holding-dollar',
+                iconColor = '#42f56f',
+                onSelect = sellCoral,
+            }
+        }
+    })
+    lib.showContext('diving_service_menu')
+end
+
 local function createSeller()
     for _, current in pairs(config.sellLocations) do
         current.model = type(current.model) == 'string' and joaat(current.model) or current.model
@@ -159,12 +213,24 @@ local function createSeller()
         FreezeEntityPosition(ped, true)
         SetEntityInvincible(ped, true)
         SetBlockingOfNonTemporaryEvents(ped, true)
+        
+        -- Tạo Blip trên bản đồ
+        local blip = AddBlipForCoord(current.coords.x, current.coords.y, current.coords.z)
+        SetBlipSprite(blip, 371) -- Icon mặt nạ lặn
+        SetBlipDisplay(blip, 4)
+        SetBlipScale(blip, 0.7)
+        SetBlipColour(blip, 3) -- Màu xanh dương
+        SetBlipAsShortRange(blip, true)
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentString("Dịch vụ lặn biển")
+        EndTextCommandSetBlipName(blip)
+
         if config.useTarget then
             exports.ox_target:addLocalEntity(ped, {
                 {
-                    label = locale('info.sell_coral'),
-                    icon = 'fa-solid fa-dollar-sign',
-                    onSelect = sellCoral,
+                    label = 'Mở Dịch Vụ Lặn Biển',
+                    icon = 'fa-solid fa-water',
+                    onSelect = openDivingMenu,
                 }
             })
         else
@@ -174,7 +240,7 @@ local function createSeller()
                 size = current.zoneDimensions,
                 debug = config.debugPoly,
                 onEnter = function()
-                    lib.showTextUI(locale('info.sell_coral_dt'))
+                    lib.showTextUI('[E] Bán san hô  |  [G] Thuê thuyền ($500)')
                 end,
                 onExit = function()
                     lib.hideTextUI()
@@ -182,6 +248,10 @@ local function createSeller()
                 inside = function()
                     if IsControlJustPressed(0, 51) then -- E
                         sellCoral()
+                        lib.hideTextUI()
+                    end
+                    if IsControlJustPressed(0, 47) then -- G
+                        rentBoat()
                         lib.hideTextUI()
                     end
                 end
