@@ -641,4 +641,23 @@ return {
         label = 'Còng số 8',
         weight = 200,
     },
+
+    ['day_bat_cho'] = {
+        label = 'Dây Bắt Chó/Mèo',
+        weight = 500,
+        description = 'Dùng để bắt động vật. Bấm E để dùng khi đứng gần.',
+        consume = 0,
+    },
+
+    ['cho_meo_thuong'] = {
+        label = 'Thú Cưng Bắt Được',
+        weight = 5000,
+        description = 'Một con vật tội nghiệp vừa bị bắt.',
+    },
+
+    ['cho_meo_beo'] = {
+        label = 'Thú Béo Phì (Hiếm)',
+        weight = 10000,
+        description = 'Trông nó có vẻ được chủ cũ chăm rất kỹ, béo ục ịch.',
+    },
 }

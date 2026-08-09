@@ -104,7 +104,7 @@ RegisterNetEvent('qbx_npccops:server:executePenalty', function(playerSource)
     exports.ox_inventory:AddItem(src, 'burger', 1)
 
     -- Phạt 500$ (Kiểm tra ngân hàng -> tiền mặt -> ghi nợ)
-    local fineAmount = 500
+    local fineAmount = 200
     local bankBalance = player.PlayerData.money['bank'] or 0
     local cashBalance = player.PlayerData.money['cash'] or 0
 
@@ -120,7 +120,7 @@ RegisterNetEvent('qbx_npccops:server:executePenalty', function(playerSource)
     -- Gọi client xóa sao và tele
     TriggerClientEvent('qbx_npccops:client:penaltyTeleport', src)
 
-    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát tiêu diệt và bị tịch thu tài sản, phạt $500!', 'error', 10000)
+    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát tiêu diệt và bị tịch thu tài sản, phạt $200!', 'error', 10000)
 end)
 
 RegisterNetEvent('qbx_npccops:server:executePenaltyBusted', function()
@@ -136,7 +136,7 @@ RegisterNetEvent('qbx_npccops:server:executePenaltyBusted', function()
     exports.ox_inventory:AddItem(src, 'burger', 1)
 
     -- Phạt 500$ (Kiểm tra ngân hàng -> tiền mặt -> ghi nợ)
-    local fineAmount = 500
+    local fineAmount = 200
     local bankBalance = player.PlayerData.money['bank'] or 0
     local cashBalance = player.PlayerData.money['cash'] or 0
 
@@ -152,5 +152,5 @@ RegisterNetEvent('qbx_npccops:server:executePenaltyBusted', function()
     -- Gọi client xóa sao và tele (để sửa lỗi native busted làm hỏng ped)
     TriggerClientEvent('qbx_npccops:client:penaltyTeleport', src)
 
-    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát bắt giữ, tịch thu tài sản và phạt $500!', 'error', 10000)
+    exports.qbx_core:Notify(src, 'Bạn đã bị cảnh sát bắt giữ, tịch thu tài sản và phạt $200!', 'error', 10000)
 end)
