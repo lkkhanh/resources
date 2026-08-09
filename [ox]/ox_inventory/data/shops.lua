@@ -66,6 +66,7 @@ return {
 		}, inventory = {
 			{ name = 'lockpick', price = 10 },
 			{ name = 'day_bat_cho', price = 50 },
+			{ name = 'repairkit', price = 100 },
 		}, locations = {
 			vec3(2748.0, 3473.0, 55.67),
 			vec3(342.99, -1298.26, 32.51)

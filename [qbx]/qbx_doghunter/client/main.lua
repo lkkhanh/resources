@@ -1,4 +1,4 @@
-local spawnedPets = {}
+local activeBlips = {}
 local isMinigameActive = false
 local currentTargetPet = nil
 local consecutiveCatches = 0
@@ -27,18 +27,6 @@ local function LoadModel(model)
     end
 end
 
-local function RemovePet(id)
-    if spawnedPets[id] then
-        if DoesEntityExist(spawnedPets[id].ped) then
-            DeleteEntity(spawnedPets[id].ped)
-        end
-        if DoesBlipExist(spawnedPets[id].blip) then
-            RemoveBlip(spawnedPets[id].blip)
-        end
-        spawnedPets[id] = nil
-    end
-end
-
 local function IsPlayerCrouching(ped)
     -- 1. Check state bags from common crouch scripts
     if LocalPlayer.state.crouch or LocalPlayer.state.stance == 2 then return true end
@@ -63,13 +51,22 @@ CreateThread(function()
     while true do
         Wait(Config.CooldownSpawn)
         
-        local ped = PlayerPedId()
-        if IsPedOnAnyBike(ped) then
+        local playerPed = PlayerPedId()
+        if IsPedOnAnyBike(playerPed) then
             local count = 0
-            for _ in pairs(spawnedPets) do count = count + 1 end
+            local peds = GetGamePool('CPed')
+            local playerCoords = GetEntityCoords(playerPed)
+            
+            for i = 1, #peds do
+                if Entity(peds[i]).state.isDogHunterPet then
+                    if #(GetEntityCoords(peds[i]) - playerCoords) < (Config.SpawnRadius * 1.5) then
+                        count = count + 1
+                    end
+                end
+            end
             
             if count < Config.MaxPetsAroundPlayer then
-                local coords = GetEntityCoords(ped)
+                local coords = GetEntityCoords(playerPed)
                 
                 -- Random angle and distance (min 50m, max SpawnRadius)
                 local angle = math.random() * math.pi * 2
@@ -93,22 +90,9 @@ CreateThread(function()
                     TaskStandStill(animal, -1)
                     SetEntityInvincible(animal, true)
                     SetBlockingOfNonTemporaryEvents(animal, true)
-
-                    local blip = AddBlipForEntity(animal)
-                    SetBlipSprite(blip, 442)
-                    SetBlipColour(blip, 5)
-                    SetBlipScale(blip, 0.8)
-                    SetBlipAsShortRange(blip, true)
-                    BeginTextCommandSetBlipName("STRING")
-                    AddTextComponentString("Thú Hoang")
-                    EndTextCommandSetBlipName(blip)
-
-                    local petId = tostring(animal)
-                    spawnedPets[petId] = {
-                        ped = animal,
-                        blip = blip,
-                        coords = safeCoords
-                    }
+                    
+                    while not NetworkGetEntityIsNetworked(animal) do Wait(0) end
+                    Entity(animal).state:set('isDogHunterPet', true, true)
                     SetModelAsNoLongerNeeded(model)
                 end
             end
@@ -117,65 +101,102 @@ CreateThread(function()
 end)
 
 -- Interaction Logic
+local nearbyPets = {}
+
+CreateThread(function()
+    while true do
+        local peds = GetGamePool('CPed')
+        local newNearby = {}
+        for i = 1, #peds do
+            local ped = peds[i]
+            if Entity(ped).state.isDogHunterPet then
+                newNearby[#newNearby + 1] = ped
+                
+                if not activeBlips[ped] then
+                    local blip = AddBlipForEntity(ped)
+                    SetBlipSprite(blip, 442)
+                    SetBlipColour(blip, 5)
+                    SetBlipScale(blip, 0.8)
+                    SetBlipAsShortRange(blip, true)
+                    BeginTextCommandSetBlipName("STRING")
+                    AddTextComponentString("Thú Hoang")
+                    EndTextCommandSetBlipName(blip)
+                    activeBlips[ped] = blip
+                end
+            end
+        end
+        nearbyPets = newNearby
+        
+        -- Cleanup stale blips
+        for ped, blip in pairs(activeBlips) do
+            if not DoesEntityExist(ped) or not Entity(ped).state.isDogHunterPet then
+                if DoesBlipExist(blip) then RemoveBlip(blip) end
+                activeBlips[ped] = nil
+            end
+        end
+        Wait(1000)
+    end
+end)
+
 CreateThread(function()
     while true do
         local wait = 1000
-        local playerPed = PlayerPedId()
-        local coords = GetEntityCoords(playerPed)
-        
-        if not isMinigameActive then
-            for id, petData in pairs(spawnedPets) do
-                if DoesEntityExist(petData.ped) then
-                    local petCoords = GetEntityCoords(petData.ped)
+        if not isMinigameActive and #nearbyPets > 0 then
+            local playerPed = PlayerPedId()
+            local coords = GetEntityCoords(playerPed)
+            
+            for i = 1, #nearbyPets do
+                local ped = nearbyPets[i]
+                if DoesEntityExist(ped) then
+                    local petCoords = GetEntityCoords(ped)
                     local dist = #(coords - petCoords)
                     
                     if dist < 50.0 then
                         wait = 0
                         
-                        if dist < 6.0 and not petData.fleeing then
+                        if dist < 6.0 and not Entity(ped).state.isFleeing then
                             -- Check stealth using our new foolproof function
                             local isStealth = IsPlayerCrouching(playerPed)
                             
                             -- Nếu đi thẳng (không lén lút) thì hoảng sợ (Bỏ check tốc độ vì nhả W bị giật lag speed)
                             if not isStealth then
-                                petData.fleeing = true
+                                Entity(ped).state:set('isFleeing', true, true)
                                 exports.qbx_core:Notify("Con vật đã hoảng sợ và chạy mất!", "error")
                                 
                                 CreateThread(function()
-                                    SetBlockingOfNonTemporaryEvents(petData.ped, false)
-                                    ClearPedTasks(petData.ped)
-                                    TaskSmartFleePed(petData.ped, playerPed, 100.0, -1, false, false)
+                                    SetBlockingOfNonTemporaryEvents(ped, false)
+                                    ClearPedTasks(ped)
+                                    TaskSmartFleePed(ped, playerPed, 100.0, -1, false, false)
                                     Wait(3000)
-                                    RemovePet(id)
+                                    TriggerServerEvent('qbx_doghunter:server:deletePet', NetworkGetNetworkIdFromEntity(ped))
                                 end)
                             else
                                 -- Tăng khoảng cách hiện E lên 3.5 để dễ nhìn thấy khi bò
-                                if dist < 3.5 and not Entity(petData.ped).state.isBeingCaught then
+                                if dist < 3.5 and not Entity(ped).state.isBeingCaught then
                                     DrawText3D(petCoords.x, petCoords.y, petCoords.z + 0.6, "[E] Bat thu")
                                      if IsControlJustPressed(0, 38) then -- E
                                         lib.callback('qbx_doghunter:server:canCatch', false, function(canCatch, msg)
                                             if canCatch then
-                                                TriggerServerEvent('qbx_doghunter:server:setCaughtState', NetworkGetNetworkIdFromEntity(petData.ped), true)
-                                                currentTargetPet = id
+                                                currentTargetPet = NetworkGetNetworkIdFromEntity(ped)
                                                 isMinigameActive = true
                                                 SetNuiFocus(true, true)
                                                 SendNUIMessage({ action = "startMinigame" })
                                             else
                                                 exports.qbx_core:Notify(msg or "Không thể bắt!", "error")
                                             end
-                                        end, NetworkGetNetworkIdFromEntity(petData.ped))
+                                        end, NetworkGetNetworkIdFromEntity(ped))
                                     end
                                 end
                             end
                         end
                     end
                     
-                    -- Despawn if too far (>350m) to allow pets spawning at 200-280m to persist
+                    -- Despawn if too far and current player has network control
                     if dist > 350.0 then
-                        RemovePet(id)
+                        if NetworkHasControlOfEntity(ped) then
+                            DeleteEntity(ped)
+                        end
                     end
-                else
-                    RemovePet(id)
                 end
             end
         end
@@ -190,8 +211,7 @@ RegisterNUICallback('minigameResult', function(data, cb)
     
     if data.success then
         consecutiveCatches = consecutiveCatches + 1
-        TriggerServerEvent('qbx_doghunter:server:catchSuccess')
-        RemovePet(currentTargetPet)
+        TriggerServerEvent('qbx_doghunter:server:catchSuccess', currentTargetPet)
         
         -- Wanted Level Check
         if consecutiveCatches >= Config.CatchLimitForWanted then
@@ -212,12 +232,19 @@ RegisterNUICallback('minigameResult', function(data, cb)
         end)
         
         -- Pet flees
-        if currentTargetPet and spawnedPets[currentTargetPet] then
-            local p = spawnedPets[currentTargetPet].ped
-            TriggerServerEvent('qbx_doghunter:server:setCaughtState', NetworkGetNetworkIdFromEntity(p), false)
-            ClearPedTasks(p)
-            TaskSmartFleePed(p, PlayerPedId(), 100.0, -1, false, false)
-            SetTimeout(2000, function() RemovePet(currentTargetPet) end)
+        if currentTargetPet then
+            TriggerServerEvent('qbx_doghunter:server:setCaughtState', currentTargetPet, false)
+            local p = NetworkGetEntityFromNetworkId(currentTargetPet)
+            if p and p ~= 0 then
+                Entity(p).state:set('isFleeing', true, true)
+                CreateThread(function()
+                    SetBlockingOfNonTemporaryEvents(p, false)
+                    ClearPedTasks(p)
+                    TaskSmartFleePed(p, PlayerPedId(), 100.0, -1, false, false)
+                    Wait(3000)
+                    TriggerServerEvent('qbx_doghunter:server:deletePet', currentTargetPet)
+                end)
+            end
         end
     end
     currentTargetPet = nil
@@ -230,9 +257,8 @@ RegisterNetEvent('qbx_medical:client:playerDead', function()
         SetNuiFocus(false, false)
         SendNUIMessage({ action = "closeMinigame" })
         isMinigameActive = false
-        if currentTargetPet and spawnedPets[currentTargetPet] then
-            local p = spawnedPets[currentTargetPet].ped
-            TriggerServerEvent('qbx_doghunter:server:setCaughtState', NetworkGetNetworkIdFromEntity(p), false)
+        if currentTargetPet then
+            TriggerServerEvent('qbx_doghunter:server:setCaughtState', currentTargetPet, false)
             currentTargetPet = nil
         end
     end
@@ -244,23 +270,8 @@ local currentSellBlip = nil
 local currentSellPed = nil
 
 local function GenerateRandomSellLocation(playerCoords)
-    local validLocations = {}
-    
-    -- Lọc ra các điểm có khoảng cách < 3000m
-    for _, coords in ipairs(Config.SellLocations) do
-        local dist = #(playerCoords - vector3(coords.x, coords.y, coords.z))
-        if dist < 3000.0 then
-            table.insert(validLocations, coords)
-        end
-    end
-    
-    local chosenCoords
-    if #validLocations > 0 then
-        chosenCoords = validLocations[math.random(#validLocations)]
-    else
-        -- Fallback: Nếu không có điểm nào < 3000m, bốc đại 1 điểm trong toàn bộ danh sách
-        chosenCoords = Config.SellLocations[math.random(#Config.SellLocations)]
-    end
+    -- Chọn ngẫu nhiên 1 tọa độ bất kỳ trong danh sách, không cần xét khoảng cách
+    local chosenCoords = Config.SellLocations[math.random(#Config.SellLocations)]
     
     return {
         coords = chosenCoords,
@@ -274,10 +285,8 @@ CreateThread(function()
         Wait(2000)
         
         local normalCount = exports.ox_inventory:Search('count', Config.Items.NormalPet)
-        local fatCount = exports.ox_inventory:Search('count', Config.Items.FatPet)
-        local totalPets = normalCount + fatCount
         
-        if totalPets > 0 then
+        if normalCount > 0 then
             if not currentSellLoc then
                 -- Pick COMPLETELY random dynamic location
                 currentSellLoc = GenerateRandomSellLocation(GetEntityCoords(PlayerPedId()))
@@ -305,9 +314,14 @@ CreateThread(function()
                 local dist = #(playerCoords - vector3(currentSellLoc.coords.x, currentSellLoc.coords.y, currentSellLoc.coords.z))
                 
                 if dist < 100.0 and not currentSellPed then
+                    -- Tự động tính toán mặt đất chuẩn để chống lún/lơ lửng
+                    local x, y, z = currentSellLoc.coords.x, currentSellLoc.coords.y, currentSellLoc.coords.z
+                    local foundGround, groundZ = GetGroundZFor_3dCoord(x, y, z + 5.0, false)
+                    local finalZ = foundGround and groundZ or (z - 1.0) -- Fallback nếu không tìm thấy
+                    
                     -- Spawn NPC
                     LoadModel(currentSellLoc.pedModel)
-                    currentSellPed = CreatePed(0, currentSellLoc.pedModel, currentSellLoc.coords.x, currentSellLoc.coords.y, currentSellLoc.coords.z - 1.0, currentSellLoc.coords.w, false, false)
+                    currentSellPed = CreatePed(0, currentSellLoc.pedModel, x, y, finalZ, currentSellLoc.coords.w, false, false)
                     SetEntityInvincible(currentSellPed, true)
                     SetBlockingOfNonTemporaryEvents(currentSellPed, true)
                     FreezeEntityPosition(currentSellPed, true)

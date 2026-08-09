@@ -80,6 +80,12 @@ return {
             },
         },
         {
+            id = 'calltow',
+            icon = 'truck-pickup',
+            label = 'Call Tow Service',
+            event = 'qbx_garages:client:callTowService'
+        },
+        {
             id = 'general',
             icon = 'rectangle-list',
             label = 'General',

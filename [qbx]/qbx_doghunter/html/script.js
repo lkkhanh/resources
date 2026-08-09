@@ -64,14 +64,15 @@ function nextRound() {
 function startTimer() {
     clearInterval(timerInterval);
     startTime = Date.now();
+    timerBar.style.transition = 'none'; // tắt hiệu ứng để bơm đầy ngay lập tức
     timerBar.style.width = '100%';
-    timerBar.style.transition = 'none'; // reset transition instantly
+    
+    // Ép trình duyệt cập nhật giao diện (reflow) ngay lập tức
+    void timerBar.offsetWidth; 
 
-    // Small delay to allow browser to render the 100% width before starting animation
-    setTimeout(() => {
-        timerBar.style.transition = `width ${timePerRound}ms linear`;
-        timerBar.style.width = '0%';
-    }, 10);
+    // Bật lại hiệu ứng chạy tụt thời gian
+    timerBar.style.transition = `width ${timePerRound}ms linear`;
+    timerBar.style.width = '0%';
 
     timerInterval = setInterval(() => {
         if (Date.now() - startTime >= timePerRound) {

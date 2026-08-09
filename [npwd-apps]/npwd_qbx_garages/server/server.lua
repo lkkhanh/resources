@@ -32,15 +32,37 @@ lib.callback.register('npwd_qbx_garages:server:getPlayerVehicles', function(sour
 			vehicleData.brand = VEHICLES[model].brand
 		end
 
-		vehicleData.garage = garageConfig[vehicleData.garage]?.label or locale('states.garage_unknown')
+		if vehicleData.state == 'out' then
+			vehicleData.garage = 'Out on map'
+		elseif vehicleData.state == 'impounded' then
+			vehicleData.garage = 'Impound Lot'
+		else
+			vehicleData.garage = garageConfig[vehicleData.garage]?.label or locale('states.garage_unknown')
+		end
 	end
 
 	return result
 end)
 
+lib.callback.register('npwd_qbx_garages:server:locateVehicle', function(source, plate)
+	local vehicles = GetAllVehicles()
+	for i = 1, #vehicles do
+		local vehicle = vehicles[i]
+		local vehPlate = GetVehicleNumberPlateText(vehicle)
+		if vehPlate and string.match(vehPlate, "^%s*(.-)%s*$") == string.match(plate, "^%s*(.-)%s*$") then
+			return GetEntityCoords(vehicle)
+		end
+	end
+	return nil
+end)
+
+
 AddEventHandler('onResourceStart', function(resourceName)
     if resourceName == 'qbx_garages' then
-        garageConfig = exports.qbx_garages:GetGarages()
+        CreateThread(function()
+            Wait(100)
+            garageConfig = exports.qbx_garages:GetGarages()
+        end)
     end
 end)
 

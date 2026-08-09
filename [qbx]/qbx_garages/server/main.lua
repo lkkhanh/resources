@@ -114,7 +114,7 @@ function GetPlayerVehicleFilter(source, garageName)
     local garage = Garages[garageName]
     local filter = {}
     filter.citizenid = not garage.shared and player.PlayerData.citizenid or nil
-    filter.states = garage.states or VehicleState.GARAGED
+    filter.states = garage.states or { VehicleState.GARAGED, VehicleState.OUT, VehicleState.IMPOUNDED }
     filter.garage = not garage.skipGarageCheck and garageName or nil
     return filter
 end
@@ -239,6 +239,28 @@ lib.callback.register('qbx_garages:server:parkVehicle', function(source, netId, 
     })
 
     exports.qbx_core:DeleteVehicle(vehicle)
+end)
+
+RegisterNetEvent('qbx_garages:server:callTowService', function(netId, plate)
+    local src = source
+    local player = exports.qbx_core:GetPlayer(src)
+    if not player then return end
+
+    local vehicle = NetworkGetEntityFromNetworkId(netId)
+    if not vehicle or not DoesEntityExist(vehicle) then
+        return exports.qbx_core:Notify(src, 'Không tìm thấy thực thể xe trên server', 'error')
+    end
+
+    local citizenid = player.PlayerData.citizenid
+    -- Remove any leading/trailing spaces from plates before matching
+    local result = MySQL.query.await('SELECT * FROM player_vehicles WHERE citizenid = ? AND plate = ?', {citizenid, plate})
+
+    if not result or #result == 0 then
+        return exports.qbx_core:Notify(src, 'Đây không phải xe của bạn!', 'error')
+    end
+
+    exports.qbx_core:DeleteVehicle(vehicle)
+    exports.qbx_core:Notify(src, 'Xe của bạn đã được cứu hộ. Hãy đến bãi đỗ xe để chuộc lại!', 'success')
 end)
 
 AddEventHandler('onResourceStart', function(resource)

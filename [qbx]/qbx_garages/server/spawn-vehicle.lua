@@ -86,18 +86,24 @@ lib.callback.register('qbx_garages:server:spawnVehicle', function (source, vehic
         exports.qbx_core:Notify(source, locale('error.not_owned'), 'error')
         return
     end
-    if garageType == GarageType.DEPOT and FindPlateOnServer(playerVehicle.props.plate) then -- If depot, check if vehicle is not already spawned on the map
-        return exports.qbx_core:Notify(source, locale('error.not_impound'), 'error')
-    end
+    if playerVehicle.state == VehicleState.OUT or playerVehicle.state == VehicleState.IMPOUNDED then
+        if FindPlateOnServer(playerVehicle.props.plate) then
+            return exports.qbx_core:Notify(source, locale('error.not_impound'), 'error')
+        end
 
-    if garageType == GarageType.DEPOT and playerVehicle.depotPrice then
         local player = exports.qbx_core:GetPlayer(source)
         OverrideFreeDepotPriceForOutVehicle(playerVehicle)
-        local canPay = payDepotPrice(player, playerVehicle.depotPrice)
+        local depotPrice = playerVehicle.depotPrice or 0
+        if depotPrice == 0 and playerVehicle.state == VehicleState.IMPOUNDED then
+            depotPrice = Config.calculateImpoundFee(vehicleId, playerVehicle.modelName) or 0
+        end
 
-        if not canPay then
-            exports.qbx_core:Notify(source, locale('error.not_enough'), 'error')
-            return
+        if depotPrice > 0 then
+            local canPay = payDepotPrice(player, depotPrice)
+            if not canPay then
+                exports.qbx_core:Notify(source, locale('error.not_enough'), 'error')
+                return
+            end
         end
     end
 

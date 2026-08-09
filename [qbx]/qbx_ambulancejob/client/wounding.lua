@@ -60,9 +60,10 @@ lib.callback.register('hospital:client:UseBandage', function()
         if math.random(1, 100) < 50 then
             exports.qbx_medical:RemoveBleed(1)
         end
-        if math.random(1, 100) < 7 then
-            exports.qbx_medical:ResetMinorInjuries()
-        end
+        
+        -- Chữa khỏi hoàn toàn mọi chấn thương (gãy tay chân, cà nhắc) 100%
+        TriggerEvent('qbx_medical:client:heal', 'full')
+        
         return true
     else
         exports.qbx_core:Notify(locale('error.canceled'), 'error')

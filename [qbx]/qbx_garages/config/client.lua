@@ -9,7 +9,7 @@ return {
     drawDropOffMarker = function(coords, radius)
         local size = (radius or 1.5) * 2
         local baseSize = 3.0
-        local baseOffset = 2.9
+        local baseOffset = 1.0
         local zOffset = baseOffset
         local hasWater, waterZ = GetWaterHeight(coords.x, coords.y, coords.z)
         local hasNoWaves, waterZNoWaves = GetWaterHeightNoWaves(coords.x, coords.y, coords.z)
@@ -19,7 +19,7 @@ return {
         end
         local waterSurfaceOffset = 1.0 -- to make sure marker is above water surface
         local drawZ = hasWater and (waterZ - baseSize + waterSurfaceOffset) or (coords.z - zOffset)
-        DrawMarker(0, coords.x, coords.y, drawZ, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, size, size, baseSize, 242, 0, 48, 255, false, false, 0, false, nil, nil, false)
+        DrawMarker(1, coords.x, coords.y, drawZ, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, size, size, 1.0, 242, 0, 48, 150, false, false, 0, false, nil, nil, false)
     end,
 
     --- called every frame when player is near the garage to draw the garage marker

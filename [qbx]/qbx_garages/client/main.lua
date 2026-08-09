@@ -133,24 +133,17 @@ local function displayVehicleInfo(vehicle, garageName, garageInfo, accessPoint)
         }
     }
 
-    if vehicle.state == VehicleState.OUT then
-        if garageInfo.type == GarageType.DEPOT then
-            options[#options + 1] = {
-                title = 'Take out',
-                icon = 'fa-truck-ramp-box',
-                description = ('$%s'):format(lib.math.groupdigits(vehicle.depotPrice)),
-                arrow = true,
-                onSelect = function()
-                    takeOutOfGarage(vehicle.id, garageName, accessPoint)
-                end,
-            }
-        else
-            options[#options + 1] = {
-                title = 'Your vehicle is already out...',
-                icon = VehicleType.CAR,
-                readOnly = true,
-            }
-        end
+    if vehicle.state == VehicleState.OUT or vehicle.state == VehicleState.IMPOUNDED then
+        local feeText = vehicle.depotPrice and vehicle.depotPrice > 0 and ('Fee: $%s'):format(lib.math.groupdigits(vehicle.depotPrice)) or 'Fee: $0'
+        options[#options + 1] = {
+            title = 'Recover Vehicle',
+            icon = 'fa-truck-ramp-box',
+            description = feeText,
+            arrow = true,
+            onSelect = function()
+                takeOutOfGarage(vehicle.id, garageName, accessPoint)
+            end,
+        }
     elseif vehicle.state == VehicleState.GARAGED then
         options[#options + 1] = {
             title = locale('menu.take_out'),
@@ -159,12 +152,6 @@ local function displayVehicleInfo(vehicle, garageName, garageInfo, accessPoint)
             onSelect = function()
                 takeOutOfGarage(vehicle.id, garageName, accessPoint)
             end,
-        }
-    elseif vehicle.state == VehicleState.IMPOUNDED then
-        options[#options + 1] = {
-            title = locale('menu.veh_impounded'),
-            icon = 'building-shield',
-            readOnly = true,
         }
     end
 
@@ -395,4 +382,54 @@ end)
 
 CreateThread(function()
     createGarages()
+end)
+
+RegisterNetEvent('qbx_garages:client:callTowService', function()
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local vehicle = lib.getClosestVehicle(coords, 5.0, true)
+
+    if not vehicle or vehicle == 0 then
+        return exports.qbx_core:Notify('Không có phương tiện nào ở gần', 'error')
+    end
+
+    local hasPassengers = false
+    for i = -1, GetVehicleMaxNumberOfPassengers(vehicle) - 1 do
+        if not IsVehicleSeatFree(vehicle, i) then
+            hasPassengers = true
+            break
+        end
+    end
+
+    if hasPassengers then
+        return exports.qbx_core:Notify('Không thể kéo xe khi đang có người bên trong!', 'error')
+    end
+
+    if lib.progressBar({
+        duration = 5000,
+        label = 'Gọi xe cứu hộ...',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {
+            car = true,
+            move = true,
+            combat = true,
+        },
+        anim = {
+            dict = 'cellphone@',
+            clip = 'cellphone_text_read_base'
+        },
+        prop = {
+            model = `prop_npc_phone_02`,
+            bone = 28422,
+            pos = vec3(0.0, 0.0, 0.0),
+            rot = vec3(0.0, 0.0, 0.0)
+        },
+    }) then
+        local netId = NetworkGetNetworkIdFromEntity(vehicle)
+        local plate = qbx.getVehiclePlate(vehicle)
+        TriggerServerEvent('qbx_garages:server:callTowService', netId, plate)
+    else
+        exports.qbx_core:Notify('Đã hủy gọi cứu hộ', 'error')
+    end
 end)

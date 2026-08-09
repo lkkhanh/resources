@@ -1,15 +1,24 @@
 local function findVehFromPlateAndLocate(plate)
-	local gameVehicles = GetGamePool('CVehicle')
-	for i = 1, #gameVehicles do
-		local vehicle = gameVehicles[i]
-		if DoesEntityExist(vehicle) then
-			if qbx.getVehiclePlate(vehicle) == plate then
-				local vehCoords = GetEntityCoords(vehicle)
-				SetNewWaypoint(vehCoords.x, vehCoords.y)
-				return true
-			end
-		end
+	local coords = lib.callback.await('npwd_qbx_garages:server:locateVehicle', false, plate)
+	if coords then
+		SetNewWaypoint(coords.x, coords.y)
+		
+		local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
+		SetBlipSprite(blip, 225)
+		SetBlipColour(blip, 1)
+		SetBlipRoute(blip, true)
+		SetBlipRouteColour(blip, 1)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString("Your Vehicle")
+		EndTextCommandSetBlipName(blip)
+		
+		SetTimeout(60000, function()
+			if DoesBlipExist(blip) then RemoveBlip(blip) end
+		end)
+		
+		return true
 	end
+	return false
 end
 
 RegisterNUICallback("npwd:qbx_garage:getVehicles", function(_, cb)
@@ -31,13 +40,10 @@ RegisterNUICallback("npwd:qbx_garage:getVehicles", function(_, cb)
 end)
 
 RegisterNUICallback("npwd:qbx_garage:requestWaypoint", function(data, cb)
-    exports.npwd:createNotification({
-        notisId = 'npwd:qbx_garage:requestWaypoint',
-        appId = 'npwd_qbx_garages',
-        content = findVehFromPlateAndLocate(data.plate) and locale('notification.marked') or locale('notification.cannot_locate'),
-        keepOpen = false,
-        duration = 5000,
-        path = '/npwd_qbx_garages',
-    })
-	cb({})
+    cb({})
+    CreateThread(function()
+        local isLocated = findVehFromPlateAndLocate(data.plate)
+        local msg = isLocated and "Đã định vị thành công, kiểm tra chấm đỏ trên bản đồ!" or "Xe không có trên bản đồ. Bạn có thể lấy xe ở các bãi đỗ xe!"
+        exports.qbx_core:Notify(msg, isLocated and 'success' or 'error')
+    end)
 end)

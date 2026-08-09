@@ -54,6 +54,7 @@ return {
         motelgarage = {
             label = 'Motel Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -63,12 +64,14 @@ return {
                     },
                     coords = vec4(275.58, -344.74, 45.17, 70.0),
                     spawn = vec4(271.26, -342.32, 44.7, 159.97),
+                    dropPoint = vec3(271.26, -342.32, 44.7),
                 }
             },
         },
         sapcounsel = {
             label = 'San Andreas Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -78,12 +81,14 @@ return {
                     },
                     coords = vec4(-330.67, -781.12, 33.96, 40.46),
                     spawn = vec4(-337.11, -775.34, 33.56, 132.09),
+                    dropPoint = vec3(-337.11, -775.34, 33.56),
                 }
             },
         },
         spanishave = {
             label = 'Spanish Ave Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -93,12 +98,14 @@ return {
                     },
                     coords = vec4(-1160.46, -741.04, 19.95, 41.26),
                     spawn = vec4(-1165.38, -747.65, 18.94, 40.45),
+                    dropPoint = vec3(-1165.38, -747.65, 18.94),
                 }
             },
         },
         caears24 = {
             label = 'Caears 24 Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -108,12 +115,14 @@ return {
                     },
                     coords = vec4(68.08, 13.15, 69.21, 160.44),
                     spawn = vec4(72.61, 11.72, 68.47, 157.59),
+                    dropPoint = vec3(72.61, 11.72, 68.47),
                 },
             },
         },
         littleseoul = {
             label = 'Little Seoul Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -123,12 +132,14 @@ return {
                     },
                     coords = vec4(-463.51, -808.2, 30.54, 0.0),
                     spawn = vec4(-472.24, -813.61, 30.3, 179.88),
+                    dropPoint = vec3(-472.24, -813.61, 30.3),
                 }
             },
         },
         lagunapi = {
             label = 'Laguna Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -138,12 +149,14 @@ return {
                     },
                     coords = vec4(363.85, 297.97, 103.5, 341.39),
                     spawn = vec4(367.41, 297.02, 103.2, 341.08),
+                    dropPoint = vec3(367.41, 297.02, 103.2),
                 }
             },
         },
         airportp = {
             label = 'Airport Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -153,12 +166,14 @@ return {
                     },
                     coords = vec4(-796.07, -2023.26, 9.17, 55.18),
                     spawn = vec4(-793.35, -2020.62, 8.51, 58.42),
+                    dropPoint = vec3(-793.35, -2020.62, 8.51),
                 }
             },
         },
         beachp = {
             label = 'Beach Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -168,12 +183,14 @@ return {
                     },
                     coords = vec4(-1184.21, -1509.65, 4.65, 303.72),
                     spawn = vec4(-1184.4, -1501.88, 4.39, 214.7),
+                    dropPoint = vec3(-1184.4, -1501.88, 4.39),
                 }
             },
         },
         themotorhotel = {
             label = 'The Motor Hotel Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -183,12 +200,14 @@ return {
                     },
                     coords = vec4(1137.77, 2663.54, 37.9, 0.0),
                     spawn = vec4(1137.56, 2674.19, 38.17, 359.95),
+                    dropPoint = vec3(1137.56, 2674.19, 38.17),
                 }
             },
         },
         liqourparking = {
             label = 'Liqour Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -198,12 +217,14 @@ return {
                     },
                     coords = vec4(960.68, 3609.32, 32.98, 268.97),
                     spawn = vec4(960.48, 3605.71, 32.98, 87.09),
+                    dropPoint = vec3(960.48, 3605.71, 32.98),
                 }
             },
         },
         shoreparking = {
             label = 'Shore Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -213,12 +234,14 @@ return {
                     },
                     coords = vec4(1726.9, 3710.38, 34.26, 22.54),
                     spawn = vec4(1728.65, 3714.85, 34.18, 21.26),
+                    dropPoint = vec3(1728.65, 3714.85, 34.18),
                 }
             },
         },
         haanparking = {
             label = 'Bell Farms Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -228,12 +251,14 @@ return {
                     },
                     coords = vec4(78.34, 6418.74, 31.28, 0),
                     spawn = vec4(70.71, 6425.16, 30.92, 68.5),
+                    dropPoint = vec3(70.71, 6425.16, 30.92),
                 }
             },
         },
         dumbogarage = {
             label = 'Dumbo Private Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -243,12 +268,14 @@ return {
                     },
                     coords = vec4(157.26, -3240.00, 7.00, 0),
                     spawn = vec4(165.32, -3236.10, 5.93, 268.5),
+                    dropPoint = vec3(165.32, -3236.10, 5.93),
                 }
             },
         },
         pillboxgarage = {
             label = 'Pillbox Garage Parking',
             vehicleType = VehicleType.CAR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -258,12 +285,14 @@ return {
                     },
                     coords = vec4(218.66, -804.08, 30.75, 65.69),
                     spawn = vec4(229.33, -805.01, 30.54, 156.79),
+                    dropPoint = vec3(229.33, -805.01, 30.54),
                 }
             },
         },
         intairport = {
             label = 'Airport Hangar',
             vehicleType = VehicleType.AIR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -273,6 +302,7 @@ return {
                     },
                     coords = vec4(-1025.34, -3017.0, 13.95, 331.99),
                     spawn = vec4(-979.2, -2995.51, 13.95, 52.19),
+                    dropPoint = vec3(-979.2, -2995.51, 13.95),
                     useRadius = 2.0,
                     dropUseRadius = 4.0,
                     drawRadius = 100,
@@ -283,6 +313,7 @@ return {
         higginsheli = {
             label = 'Higgins Helitours',
             vehicleType = VehicleType.AIR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -292,6 +323,7 @@ return {
                     },
                     coords = vec4(-722.12, -1472.74, 5.0, 140.0),
                     spawn = vec4(-724.83, -1443.89, 5.0, 140.0),
+                    dropPoint = vec3(-724.83, -1443.89, 5.0),
                     useRadius = 2.0,
                     dropUseRadius = 4.0,
                     drawRadius = 100,
@@ -302,6 +334,7 @@ return {
         airsshores = {
             label = 'Sandy Shores Hangar',
             vehicleType = VehicleType.AIR,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -311,6 +344,7 @@ return {
                     },
                     coords = vec4(1757.74, 3296.13, 41.15, 142.6),
                     spawn = vec4(1740.88, 3278.99, 41.09, 189.46),
+                    dropPoint = vec3(1740.88, 3278.99, 41.09),
                     useRadius = 2.0,
                     dropUseRadius = 4.0,
                     drawRadius = 100,
@@ -321,6 +355,7 @@ return {
         lsymc = {
             label = 'LSYMC Boathouse',
             vehicleType = VehicleType.SEA,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -330,6 +365,7 @@ return {
                     },
                     coords = vec4(-794.64, -1510.89, 1.6, 201.55),
                     spawn = vec4(-793.58, -1501.4, 0.12, 111.5),
+                    dropPoint = vec3(-793.58, -1501.4, 0.12),
                     dropUseRadius = 3.0,
                     dropDrawRadius = 100,
                 }
@@ -338,6 +374,7 @@ return {
         paleto = {
             label = 'Paleto Boathouse',
             vehicleType = VehicleType.SEA,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -347,6 +384,7 @@ return {
                     },
                     coords = vec4(-277.4, 6637.01, 7.5, 40.51),
                     spawn = vec4(-289.2, 6637.96, 1.01, 45.5),
+                    dropPoint = vec3(-289.2, 6637.96, 1.01),
                     dropUseRadius = 3.0,
                     dropDrawRadius = 100,
                 }
@@ -355,6 +393,7 @@ return {
         millars = {
             label = 'Millars Boathouse',
             vehicleType = VehicleType.SEA,
+            skipGarageCheck = true,
             accessPoints = {
                 {
                     blip = {
@@ -364,6 +403,7 @@ return {
                     },
                     coords = vec4(1299.02, 4216.42, 33.91, 166.8),
                     spawn = vec4(1296.78, 4203.76, 30.12, 169.03),
+                    dropPoint = vec3(1296.78, 4203.76, 30.12),
                     dropUseRadius = 3.0,
                     dropDrawRadius = 100,
                 }

@@ -257,11 +257,17 @@ return {
     ['repairkit'] = {
         label = 'Bộ sửa chữa',
         weight = 2500,
+        server = {
+            export = 'vehiclehandler.repairkit'
+        }
     },
 
     ['advancedrepairkit'] = {
         label = 'Bộ sửa chữa cao cấp',
         weight = 4000,
+        server = {
+            export = 'vehiclehandler.advancedrepairkit'
+        }
     },
 
     ['diamond_ring'] = {
