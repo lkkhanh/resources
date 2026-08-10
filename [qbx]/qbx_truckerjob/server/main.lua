@@ -1,7 +1,7 @@
 local config = require 'config.server'
 local sharedConfig = require 'config.shared'
 --- drops is the counter of packages for which payment is due
-local bail, drops, locations, antiAbuse = {}, {}, {}, {}
+local bail, drops, locations, antiAbuse, sessionMaxLoc = {}, {}, {}, {}, {}
 
 ---@alias NotificationPosition 'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' | 'bottom-left' | 'center-right' | 'center-left'
 ---@alias NotificationType 'info' | 'warning' | 'success' | 'error'
@@ -100,16 +100,16 @@ RegisterNetEvent('qbx_truckerjob:server:getPaid', function()
         return notify(player, locale('error.no_work_done'), 'error')
     end
 
-    local dropPrice, bonus = math.random(100, 120), 0
+    local dropPrice, bonus = math.random(1200, 1500), 0
 
-    if playerDrops >= 5 then
-        bonus = math.ceil((dropPrice / 10) * 5) + 100
-    elseif playerDrops >= 10 then
-        bonus = math.ceil((dropPrice / 10) * 7) + 300
-    elseif playerDrops >= 15 then
-        bonus = math.ceil((dropPrice / 10) * 10) + 400
-    elseif playerDrops >= 20 then
-        bonus = math.ceil((dropPrice / 10) * 12) + 500
+    if playerDrops >= 15 then
+        bonus = math.ceil((dropPrice / 10) * 12) + 5500
+    elseif playerDrops >= 12 then
+        bonus = math.ceil((dropPrice / 10) * 10) + 3500
+    elseif playerDrops >= 8 then
+        bonus = math.ceil((dropPrice / 10) * 7) + 2000
+    elseif playerDrops >= 5 then
+        bonus = math.ceil((dropPrice / 10) * 5) + 1000
     end
 
     local price = (dropPrice * playerDrops) + bonus
@@ -189,17 +189,20 @@ lib.callback.register('qbx_truckerjob:server:getNewTask', function(source, init)
     if init then
         local randPositionIndex = math.random(#sharedConfig.locations.stores)
         locations[source] = { done = {}, current = randPositionIndex }
+        sessionMaxLoc[source] = math.random(config.minLocations or config.maxLocations, config.maxLocations)
 
-        return randPositionIndex, math.random(config.drops.min, config.drops.max), 1, config.maxLocations
+        return randPositionIndex, math.random(config.drops.min, config.drops.max), 1, sessionMaxLoc[source]
     end
 
     drops[citizenid] = (drops[citizenid] or 0) + 1
 
     local doneLocations = locations[source].done
     locations[source].done[#doneLocations + 1] = locations[source].current
-    if #doneLocations == config.maxLocations then
+    local maxLoc = sessionMaxLoc[source] or config.maxLocations
+    if #doneLocations == maxLoc then
         locations[source].current = nil
-        return 0, 0, #doneLocations, config.maxLocations
+        sessionMaxLoc[source] = nil
+        return 0, 0, #doneLocations, maxLoc
     end
 
     -- giveReward(player)
@@ -224,5 +227,5 @@ lib.callback.register('qbx_truckerjob:server:getNewTask', function(source, init)
 
     locations[source].current = index
 
-    return index, math.random(config.drops.min, config.drops.max), #locations[source].done + 1, config.maxLocations
+    return index, math.random(config.drops.min, config.drops.max), #locations[source].done + 1, sessionMaxLoc[source] or config.maxLocations
 end)

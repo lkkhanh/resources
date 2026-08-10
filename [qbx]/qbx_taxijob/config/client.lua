@@ -6,8 +6,8 @@ return {
         { model = 'taxi', label = locale('info.taxi_label_1') }
     },
     meter = {
-        defaultPrice = 125.0, -- price per mile
-        startingPrice = 0,     -- static starting price
+        defaultPrice = 800.0, -- giá mỗi dặm (mile)
+        startingPrice = 500,   -- phí cố định khi bắt đầu chuyến
         useGpsPrice = true -- use GPS distance instead of driven distance
     },
     locations = {

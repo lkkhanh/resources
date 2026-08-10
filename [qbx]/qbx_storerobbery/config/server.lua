@@ -2,9 +2,9 @@ return {
     callCopsTimeout = 240000,
 
     registerReward = {
-        min = 80,
-        max = 200,
-        chanceAtSticky = 30,
+        min = 3000,          -- tiền mặt tối thiểu từ két thu ngân
+        max = 6000,          -- tiền mặt tối đa từ két thu ngân
+        chanceAtSticky = 30, -- 30% cơ hội nhận thêm sticky bomb
     },
 
     registerRefresh = {
@@ -14,12 +14,12 @@ return {
 
     safeReward = {
         markedBillsAmount = {
-            min = 1,
-            max = 3,
+            min = 2,   -- số tờ tiền có dấu tối thiểu
+            max = 5,   -- số tờ tiền có dấu tối đa
         },
         markedBillsWorth = {
-            min = 230,
-            max = 600,
+            min = 3000,  -- giá trị mỗi tờ tiền tối thiểu
+            max = 8000,  -- giá trị mỗi tờ tiền tối đa
         },
         chanceAtSpecial = 40,
         rolexAmount = {

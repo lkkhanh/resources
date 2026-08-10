@@ -7,11 +7,11 @@ Config.Items = {
 }
 
 -- Prices & Weight
-Config.PricePerKg = 100 -- 100$ cho mỗi 1 kg
+Config.PricePerKg = 150 -- 150$ cho mỗi 1 kg
 Config.WeightRange = { min = 5.0, max = 30.0 } -- Khoảng cân nặng ngẫu nhiên khi bắt thú
 -- Spawn Settings
 Config.SpawnRadius = 200.0
-Config.MaxPetsAroundPlayer = 2 -- Tối đa 2 con xuất hiện cùng lúc để chống lag
+Config.MaxPetsAroundPlayer = 3 -- Tối đa 3 con xuất hiện cùng lúc để chống lag
 Config.CooldownSpawn = 30000 -- 30 giây hồi để tìm điểm spawn mới
 Config.BlipRadius = 2000.0 -- Bán kính radar dò tìm giả lập (để thỏa mãn yêu cầu 2km)
 
@@ -61,5 +61,5 @@ Config.SellLocations = {
 }
 
 -- Penalty
-Config.PenaltyFine = 100
+Config.PenaltyFine = 500
 Config.CatchLimitForWanted = 3 -- Bắt 3 con bị 1 sao
